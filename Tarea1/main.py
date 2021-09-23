@@ -15,21 +15,21 @@ def write_file(filename,text_list):
         file.write(line+"\n")
 
 regex = [
-    "(U)([0-9])",
-    "(D)([0-9])",
-    "(<)([0-9])",
-    "(>)([0-9])",
+    "(U)([1-9][0-9]*)",
+    "(D)([1-9][0-9]*)",
+    "(<)([1-9][0-9]*)",
+    "(>)([1-9][0-9]*)",
     "(A)",
     "(B)",
-    "(X)([U|D|<|>])([0-9])",
-    "(Y)([U|D|<|>])([0-9])",
+    "(X)(([U|D|<|>][1-9][0-9]*)+)",
+    "(Y)(([U|D|<|>][1-9][0-9]*)+)",
     "(L)([c|e])",
     "(R)",
     "(Z)",
     "(S)([c|e])"
 ]
 
-regex_condition = "(\?)([U|D|<|>])([0-9])(\?[U|D|<|>][0-9])*(U[0-9]|D[0-9]|<[0-9]|>[0-9]|A|B|X[U|D|<|>]|Y[U|D|<|>]|L[c|e]|R|Z|S[c|e])"
+regex_condition = "(\?)(([U|D|<|>][1-9][0-9]*)+)(\?([U|D|<|>][1-9][0-9]*)+)*(A|B|(X)(([U|D|<|>][1-9][0-9]*)+)|(Y)(([U|D|<|>][1-9][0-9]*)+)|L[c|e]|R|Z|S[c|e])"
 regex.append(regex_condition)
 
 
@@ -58,45 +58,48 @@ def B(position: list, matriz: list) -> None:
     x,y = position
     matriz[y][x] -= 1
 
-def dir_value(position:list, matriz: list ,dir: str, number: int, n: int) -> int:
+def dir_aux(dir,position,n,number):
     if dir == "U":
         U(position,n,number)
-        x,y = position
-        U(position,n,-number)
-        return matriz[y][x]
     if dir == "D":
         D(position,n,number)
-        x,y = position
-        D(position,n,-number)
-        return matriz[y][x]
     if dir == "<":
         minus(position,n,number)
-        x,y = position
-        minus(position,n,-number)
-        return matriz[y][x]
     if dir == ">":
         major(position,n,number)
-        x,y = position
-        major(position,n,-number)
-        return matriz[y][x]
-    return 1
-         
-def X(position: list, matriz: list, dir: str, number: int) -> None:
-    x,y = position
-    matriz[y][x] *= dir_value(position,matriz,dir,number,len(matriz))
 
-def Y(position: list, matriz: list, dir: str, number: int) -> None:
+def dir_value(position:list, matriz: list ,dir: str, n: int) -> int:
+    temp_dir = ""
+    while len(dir) > 0:
+        value = re.search("^([U|D|<|>])([0-9]+)",dir)
+        dir_aux(value.group(1),position,n,int(value.group(2)))
+        temp_dir = value.group() + temp_dir
+        dir = dir[value.span()[1]:]
+    x, y = position
+    resp = matriz[y][x]
+    while len(temp_dir) > 0:
+        value = re.search("^([U|D|<|>])([0-9]+)",temp_dir)
+        dir_aux(value.group(1),position,n,-int(value.group(2)))
+        temp_dir = temp_dir[value.span()[1]:]
+    return resp
+    
+         
+def X(position: list, matriz: list, dir: str) -> None:
     x,y = position
-    number = dir_value(position,matriz,dir,number)
+    matriz[y][x] *= dir_value(position,matriz,dir,len(matriz))
+
+def Y(position: list, matriz: list, dir: str) -> None:
+    x,y = position
+    number = dir_value(position,matriz,dir,len(matriz))
     if number == 0: return
     matriz[y][x] /= number
 
 def L(position: list, matriz: list, c_or_e: str) -> None:
     x,y = position
     if c_or_e == "c" and (32 <= matriz[y][x] <= 127):
-        print(chr(matriz[y][x]))
+        print(chr(matriz[y][x]),end="")
         return
-    print(matriz[y][x])
+    print(matriz[y][x],end="")
 
 def S(matriz: list, c_or_e: str) -> None:
     for y in matriz:
@@ -168,8 +171,8 @@ def process_command(exp, matriz, position):
     elif exp.group(1) == "<": minus(position,len(matriz),int(exp.group(2)))
     elif exp.group(1) == "A": A(position,matriz)
     elif exp.group(1) == "B": B(position,matriz)
-    elif exp.group(1) == "X": X(position,matriz,exp.group(2),int(exp.group(3)),)
-    elif exp.group(1) == "Y": Y(position,matriz,exp.group(2),int(exp.group(3)))
+    elif exp.group(1) == "X": X(position,matriz,exp.group(2))
+    elif exp.group(1) == "Y": Y(position,matriz,exp.group(2))
     elif exp.group(1) == "L": L(position,matriz,exp.group(2))
     elif exp.group(1) == "R": R(position,matriz)
     elif exp.group(1) == "Z": Z(matriz)
@@ -178,9 +181,9 @@ def process_command(exp, matriz, position):
 def process_condition(exp,matriz, position):
     str_temp = exp.group()
     while len(str_temp) > 0:
-        temp = re.search("^"+regex_condition, str_temp)
-        if temp and dir_value(position, matriz, temp.group(2), int(temp.group(3)), len(matriz)) > 0:
-            str_temp = str_temp[( len(temp.group(1) + temp.group(2) + temp.group(3)) ):]
+        temp = re.search("^(\?)(([U|D|<|>][0-9]+)+)", str_temp)
+        if temp and dir_value(position, matriz, temp.group(2), len(matriz)) > 0:
+            str_temp = str_temp[temp.span()[1]:]
         elif temp: str_temp = ""
         else:
             for e in regex:
@@ -199,12 +202,18 @@ matriz = [[0 for __ in range(n)] for _ in range(n)]
 
 operations = code[1:]
 
+bugs = []
+
 for op in operations:
     resp = compiler_line(op)
     if not resp["e"]:
         inter_line(resp["list_exp"],matriz)
     else:
-        print(op)
+        bugs.append(op)
+
+if len(bugs) == 0: bugs.append("No hay errores!")
+write_file("errores.txt",bugs)
+
 
 
 
