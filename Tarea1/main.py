@@ -21,8 +21,8 @@ regex = [
     "(>)(0|[1-9][0-9]*)",
     "(A)",
     "(B)",
-    "(X)(([U|D|<|>][1-9][0-9]*)+)",
-    "(Y)(([U|D|<|>][1-9][0-9]*)+)",
+    "(X)(([U|D|<|>](0|[1-9][0-9]*))+)",
+    "(Y)(([U|D|<|>](0|[1-9][0-9]*))+)",
     "(L)([c|e])",
     "(R)",
     "(Z)",
@@ -181,13 +181,13 @@ def process_command(exp, matriz, position):
 def process_condition(exp,matriz, position):
     str_temp = exp.group()
     while len(str_temp) > 0:
-        temp = re.search("^(\?)(([U|D|<|>][0-9]+)+)", str_temp)
+        temp = re.search("^(\?)(([U|D|<|>](0|[1-9][0-9]*))+)", str_temp)
         if temp and dir_value(position, matriz, temp.group(2), len(matriz)) > 0:
             str_temp = str_temp[temp.span()[1]:]
         elif temp: str_temp = ""
         else:
             for e in regex:
-                e_temp = re.search(e, str_temp)
+                e_temp = re.search("^"+e, str_temp)
                 if e_temp: process_command(e_temp, matriz, position)
             str_temp = ""
 
@@ -195,6 +195,7 @@ def inter_line(list_exp,matriz,position = [0,0]):
     for exp in list_exp:
         if exp.group(1) == "?": process_condition(exp,matriz,position)
         else: process_command(exp, matriz, position)
+
 
 code = read_file("codigo.txt")
 n = int(code[0])
