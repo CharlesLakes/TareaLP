@@ -92,7 +92,7 @@ def Y(position: list, matriz: list, dir: str) -> None:
     x,y = position
     number = dir_value(position,matriz,dir,len(matriz))
     if number == 0: return
-    matriz[y][x] /= number
+    matriz[y][x] //= number
 
 def L(position: list, matriz: list, c_or_e: str) -> None:
     x,y = position
