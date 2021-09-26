@@ -205,12 +205,12 @@ operations = code[1:]
 
 bugs = []
 
-for op in operations:
-    resp = compiler_line(op)
+for op in range(0,len(operations)):
+    resp = compiler_line(operations[op])
     if not resp["e"]:
         inter_line(resp["list_exp"],matriz)
     else:
-        bugs.append(op)
+        bugs.append(str(op + 1)+" "+operations[op])
 
 if len(bugs) == 0: bugs.append("No hay errores!")
 write_file("errores.txt",bugs)
