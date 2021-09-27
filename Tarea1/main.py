@@ -261,7 +261,7 @@ def R(position: list, matriz: list) -> None:
     matriz[y][x] = 0
 
 '''
-R
+Z
 ———————–
 matriz : list
 ———————–
