@@ -221,8 +221,11 @@ devuelve None
 '''  
 def L(position: list, matriz: list, c_or_e: str) -> None:
     x,y = position
-    if c_or_e == "c" and (32 <= matriz[y][x] <= 127):
+    if c_or_e == "c" and (32 <= matriz[y][x] < 127):
         print(chr(matriz[y][x]),end="")
+        return
+    if matriz[y][x] == 127:
+        print()
         return
     print(matriz[y][x],end="")
 
@@ -238,8 +241,10 @@ devuelve None
 def S(matriz: list, c_or_e: str) -> None:
     for y in matriz:
         for x in y:
-            if c_or_e == "c" and (32 <= x <= 127):
+            if c_or_e == "c" and (32 <= x < 127):
                 print(chr(x),end="")
+            elif c_or_e == "c" and x == 127:
+                print()
             elif c_or_e == "e":
                 print(x,end="")
 
