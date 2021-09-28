@@ -60,7 +60,7 @@ number : int
 mueve la posicion 'number' movimiento hacia arriba
 devuelve None
 '''
-def U(position: list, n: int, number: int) -> None:
+def U(position, n, number):
     position[1] -= number
     position[1] %= n 
 
@@ -74,7 +74,7 @@ number : int
 mueve la posicion 'number' movimiento hacia abajo
 devuelve None
 '''
-def D(position: list, n: int, number: int) -> None:
+def D(position, n, number):
     position[1] += number
     position[1] %= n 
 
@@ -88,7 +88,7 @@ number : int
 mueve la posicion 'number' movimiento hacia la izquierda
 devuelve None
 '''
-def minus(position: list, n: int, number: int) -> None:
+def minus(position, n, number):
     position[0] -= number
     position[0] %= n
 
@@ -102,7 +102,7 @@ number : int
 mueve la posicion 'number' movimiento hacia la derecha
 devuelve None
 '''
-def major(position: list, n: int, number: int) -> None:
+def major(position, n, number):
     position[0] += number
     position[0] %= n
 
@@ -115,7 +115,7 @@ matriz: list
 adds one at current position
 retuns None
 '''
-def A(position: list, matriz: list) -> None:
+def A(position, matriz):
     x,y = position
     matriz[y][x] += 1
 
@@ -128,7 +128,7 @@ matriz: list
 resta uno en la posición actual
 devuelve None
 '''
-def B(position: list, matriz: list) -> None:
+def B(position, matriz):
     x,y = position
     matriz[y][x] -= 1
 
@@ -164,7 +164,7 @@ n : int
 obtiene el valor de la ubicación dada
 devuelve el valor en el 'dir' dado
 '''
-def dir_value(position:list, matriz: list ,dir: str, n: int) -> int:
+def dir_value(position, matriz ,dir, n):
     temp_dir = ""
     while len(dir) > 0:
         value = re.search("^([U|D|<|>])([0-9]+)",dir)
@@ -189,7 +189,7 @@ dir : str
 multiplica el valor de la posicion segun otra casilla de una ubicación dada
 devuelve None
 '''         
-def X(position: list, matriz: list, dir: str) -> None:
+def X(position, matriz, dir):
     x,y = position
     matriz[y][x] *= dir_value(position,matriz,dir,len(matriz))
 
@@ -203,7 +203,7 @@ dir : str
 divide el valor de la posicion segun otra casilla de una ubicación dada
 devuelve None
 '''  
-def Y(position: list, matriz: list, dir: str) -> None:
+def Y(position, matriz, dir):
     x,y = position
     number = dir_value(position,matriz,dir,len(matriz))
     if number == 0: return
@@ -219,7 +219,7 @@ c_or_e : str
 imprime la ubicacion actual como numero o letra segun se requiera
 devuelve None
 '''  
-def L(position: list, matriz: list, c_or_e: str) -> None:
+def L(position, matriz, c_or_e):
     x,y = position
     if c_or_e == "c" and (32 <= matriz[y][x] < 127):
         print(chr(matriz[y][x]),end="")
@@ -238,7 +238,7 @@ c_or_e : str
 Imprime toda la matriz como numero o texto segun se requiera
 devuelve None
 '''  
-def S(matriz: list, c_or_e: str) -> None:
+def S(matriz, c_or_e):
     for y in matriz:
         for x in y:
             if c_or_e == "c" and (32 <= x < 127):
@@ -256,7 +256,7 @@ matriz : list
 ———————–
 se resetea la casilla actual
 '''  
-def R(position: list, matriz: list) -> None:
+def R(position, matriz):
     x,y = position
     matriz[y][x] = 0
 
@@ -267,7 +267,7 @@ matriz : list
 ———————–
 se resetea la matriz
 '''  
-def Z(matriz: list) -> None:
+def Z(matriz):
     y = 0
     while y < len(matriz):
         x = 0
@@ -409,7 +409,6 @@ for op in range(0,len(operations)):
 
 if len(bugs) == 0: bugs.append("No hay errores!")
 write_file("errores.txt",bugs)
-
 
 
 
