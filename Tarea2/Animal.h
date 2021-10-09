@@ -15,7 +15,7 @@ typedef struct Animal{
 void CrearAnimal(Animal* a);
 void Borrar(Animal* a);
 void MostrarAnimal(Animal* a);
-void Reproducir(Animal* a1, Animal* a2);
+void Reproducir(Animal* a1, Animal* a2, Animal* hijo);
 void ComerOHuir(Animal* a1, Animal* a2);
 int Comparar(Animal* a1, Animal* a2);
 
