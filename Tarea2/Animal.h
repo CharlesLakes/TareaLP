@@ -18,6 +18,32 @@ void MostrarAnimal(Animal* a);
 void Reproducir(Animal* a1, Animal* a2, Animal* hijo);
 void ComerOHuir(Animal* a1, Animal* a2);
 int Comparar(Animal* a1, Animal* a2);
+void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo);
+void ReproduccionCruzada(Animal* a1 ,Animal* a2 ,Animal* hijo);
+void ComerSiempre(Animal* a1 ,Animal* a2);
+void HuirSiempre(Animal* a1 ,Animal* a2);
+void ComerAleatorio(Animal* a1 ,Animal* a2);
 
+
+
+
+
+typedef struct elementoReproduccionOComerHuir{
+    char* nombre;
+    void (*reproduccion)(Animal*, Animal*, Animal*);
+    void (*comerHuir)(Animal*, Animal*);
+}elementoCallback;
+
+elementoCallback reproducciones[] = {
+    {"ReproduccionSimple",ReproduccionSimple,0x0},
+    {"ReproduccionCruzada",ReproduccionCruzada,0x0}
+};
+
+elementoCallback funsComerOHuir[] = {
+    {"ComerSiempre",0x0,ComerSiempre},
+    {"HuirSiempre",0x0,HuirSiempre},
+    {"ComerAleatorio",0x0,ComerAleatorio}
+
+};
 
 #endif

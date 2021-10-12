@@ -4,32 +4,6 @@
 #include <time.h>
 
 
-void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){};
-void ReproduccionCruzada(Animal* a1 ,Animal* a2 ,Animal* hijo){printf("xd\n");};
-void ComerSiempre(Animal* a1 ,Animal* a2){};
-void HuirSiempre(Animal* a1 ,Animal* a2){};
-void ComerAleatorio(Animal* a1 ,Animal* a2){};
-
-typedef struct elementoReproduccionOComerHuir{
-    char* nombre;
-    void (*reproduccion)(Animal*, Animal*, Animal*);
-    void (*comerHuir)(Animal*, Animal*);
-}elementoCallback;
-
-elementoCallback reproducciones[] = {
-    {"ReproduccionSimple",ReproduccionSimple,NULL},
-    {"ReproduccionCruzada",ReproduccionCruzada,NULL}
-};
-
-elementoCallback funsComerOHuir[] = {
-    {"ComerSiempre",NULL,ComerSiempre},
-    {"HuirSiempre",NULL,HuirSiempre},
-    {"ComerAleatorio",NULL,ComerAleatorio}
-
-};
-
-
-
 void* auxiliarAsignacionDeTipo(char tipo){
     void* atributo;
     if(tipo == 'e'){
@@ -137,4 +111,64 @@ void ComerOHuir(Animal* a1, Animal* a2){
         printf("Se usara la función de comer o huir del segundo animal.\n");
         a1->comerHuir(a1,a2);
     }
+};
+
+int AtributoANumero(char tipo, void *valor){
+    if(tipo == 'e') 
+        return *((int *) valor);
+    if(tipo == 'f')
+        return (int) *((float *) valor);
+    if(tipo == 'c')
+        return ((int) *((char *) valor))/4; 
+};
+
+int Comparar(Animal* a1, Animal* a2){
+    int balanceador = 0;
+    if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_fuerza,a2->fuerza))
+        balanceador++;
+    else balanceador--;
+
+    if(AtributoANumero(a1->tipo_resistencia,a1->resistencia) > AtributoANumero(a2->tipo_resistencia,a2->resistencia))
+        balanceador++;
+    else balanceador--;
+
+    if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad))
+        balanceador++;
+    else balanceador--;
+
+    return balanceador <= 0;
+
+};
+
+void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){
+    if(!Comparar(a1,a2))
+        *hijo = *a1;
+    else 
+        *hijo = *a2;
+}
+
+void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
+    Animal  *temp1, *temp2;
+
+    if(!Comparar(a1,a2)){
+        temp1 = a1;
+        temp2 = a2;
+    }else{
+        temp1 = a2;
+        temp2 = a1;
+    }
+
+    hijo->tipo_fuerza = temp1->tipo_fuerza;
+    hijo->fuerza = temp1->fuerza;
+
+    hijo->tipo_velocidad = temp1->tipo_velocidad;
+    hijo->velocidad = temp1->velocidad;
+
+    hijo->tipo_resistencia = temp2->tipo_resistencia;
+    hijo->resistencia = temp2->resistencia;
+
+    hijo->reproduccion = temp1->reproduccion;
+    hijo->comerHuir = temp2->comerHuir;
+    
+    
 };
