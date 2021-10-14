@@ -118,10 +118,10 @@ void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
     int resultado = rand() % 2;
     if(resultado){
         printf("Se usara la función de reproducción del primer animal.\n");
-        a2->reproduccion(a1,a2,hijo);
+        a1->reproduccion(a1,a2,hijo);
     }else{
         printf("Se usara la función de reproducción del segundo animal.\n");
-        a1->reproduccion(a1,a2,hijo);
+        a2->reproduccion(a2,a1,hijo);
     }
 
 };
@@ -130,10 +130,10 @@ void ComerOHuir(Animal* a1, Animal* a2){
     int resultado = rand() % 2;
     if(resultado){
         printf("Se usara la función de comer o huir del primer animal.\n");
-        a2->comerHuir(a1,a2);
+        a1->comerHuir(a1,a2);
     }else{
         printf("Se usara la función de comer o huir del segundo animal.\n");
-        a1->comerHuir(a1,a2);
+        a2->comerHuir(a2,a1);
     }
 };
 
