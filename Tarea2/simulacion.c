@@ -8,5 +8,6 @@ int main(){
     Animal a;
     CrearAnimal(&a);
     MostrarAnimal(&a);
+    Borrar(&a);
     return 0;
 }

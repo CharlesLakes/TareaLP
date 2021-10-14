@@ -6,3 +6,7 @@ simulacion.o: simulacion.c Animal.h
 	gcc -c simulacion.c -Wall
 clear:
 	rm simulacion.o Animal.o main.o
+leaks: main.o
+	valgrind --leak-check=yes ./main.o
+run-dev:
+	make clear && make compile && make leaks

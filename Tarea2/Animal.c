@@ -4,6 +4,24 @@
 #include <time.h>
 
 
+typedef struct elementoReproduccionOComerHuir{
+    char* nombre;
+    void (*reproduccion)(Animal*, Animal*, Animal*);
+    void (*comerHuir)(Animal*, Animal*);
+}elementoCallback;
+
+elementoCallback reproducciones[] = {
+    {"ReproduccionSimple",ReproduccionSimple,NULL},
+    {"ReproduccionCruzada",ReproduccionCruzada,NULL}
+};
+
+elementoCallback funsComerOHuir[] = {
+    {"ComerSiempre",NULL,ComerSiempre},
+    {"HuirSiempre",NULL,HuirSiempre},
+    {"ComerAleatorio",NULL,ComerAleatorio}
+
+};
+
 void* auxiliarAsignacionDeTipo(char tipo){
     void* atributo;
     if(tipo == 'e'){
@@ -63,7 +81,9 @@ void CrearAnimal(Animal* a){
 
 
 void Borrar(Animal* a){
-    free(a);
+    free(a->fuerza);
+    free(a->velocidad);
+    free(a->resistencia);
 };
 
 
@@ -120,6 +140,7 @@ int AtributoANumero(char tipo, void *valor){
         return (int) *((float *) valor);
     if(tipo == 'c')
         return ((int) *((char *) valor))/4; 
+    return 0;
 };
 
 int Comparar(Animal* a1, Animal* a2){
@@ -171,4 +192,59 @@ void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
     hijo->comerHuir = temp2->comerHuir;
     
     
+};
+
+
+void ComerSiempre(Animal* a1 ,Animal* a2){
+    if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_resistencia,a2->resistencia)){
+        Borrar(a2);
+        return;
+    }
+    Borrar(a1);
+    return;
+};
+
+
+void HuirSiempre(Animal* a1 ,Animal* a2){
+    if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad))
+        return;
+    
+    Borrar(a1);
+};
+
+void ComerAleatorio(Animal* a1 ,Animal* a2){
+    char tipo_a1, tipo_a2;
+    void *valor_a1, *valor_a2;
+    int numero;
+
+    numero = rand() % 3;
+    if(numero == 0){
+        tipo_a1 = a1->tipo_fuerza;
+        valor_a1 = a1->fuerza;
+    }else if(numero == 1){
+        tipo_a1 = a1->tipo_velocidad;
+        valor_a1 = a1->velocidad;
+    }else if(numero == 2){
+        tipo_a1 = a1->tipo_resistencia;
+        valor_a1 = a1->resistencia;
+    }
+
+    numero = rand() % 3;
+    if(numero == 0){
+        tipo_a2 = a2->tipo_fuerza;
+        valor_a2 = a2->fuerza;
+    }else if(numero == 1){
+        tipo_a2 = a2->tipo_velocidad;
+        valor_a2 = a2->velocidad;
+    }else if(numero == 2){
+        tipo_a2 = a2->tipo_resistencia;
+        valor_a2 = a2->resistencia;
+    }
+
+    if(AtributoANumero(tipo_a1,valor_a1) > AtributoANumero(tipo_a2,valor_a2)){
+        Borrar(a2);
+        return;
+    }
+    Borrar(a1);
+
 };

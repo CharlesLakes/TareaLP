@@ -28,22 +28,6 @@ void ComerAleatorio(Animal* a1 ,Animal* a2);
 
 
 
-typedef struct elementoReproduccionOComerHuir{
-    char* nombre;
-    void (*reproduccion)(Animal*, Animal*, Animal*);
-    void (*comerHuir)(Animal*, Animal*);
-}elementoCallback;
 
-elementoCallback reproducciones[] = {
-    {"ReproduccionSimple",ReproduccionSimple,0x0},
-    {"ReproduccionCruzada",ReproduccionCruzada,0x0}
-};
-
-elementoCallback funsComerOHuir[] = {
-    {"ComerSiempre",0x0,ComerSiempre},
-    {"HuirSiempre",0x0,HuirSiempre},
-    {"ComerAleatorio",0x0,ComerAleatorio}
-
-};
 
 #endif
