@@ -1,6 +1,8 @@
 #ifndef Animal_H_
 #define Animal_H_
 
+#define SIZE 1000
+
 typedef struct Animal{
     void *fuerza;
     char tipo_fuerza;
@@ -11,6 +13,7 @@ typedef struct Animal{
     void (*reproduccion)(struct Animal*, struct Animal*, struct Animal*);
     void (*comerHuir)(struct Animal*, struct Animal*);
 }Animal;
+
 
 void CrearAnimal(Animal* a);
 void Borrar(Animal* a);
@@ -24,10 +27,7 @@ void ComerSiempre(Animal* a1 ,Animal* a2);
 void HuirSiempre(Animal* a1 ,Animal* a2);
 void ComerAleatorio(Animal* a1 ,Animal* a2);
 
-
-
-
-
+void auxImprimirTipo(char tipo, void* valor);
 
 
 #endif

@@ -84,6 +84,10 @@ void Borrar(Animal* a){
     free(a->fuerza);
     free(a->velocidad);
     free(a->resistencia);
+    
+    a->fuerza = NULL;
+    a->velocidad = NULL;
+    a->resistencia = NULL;
 };
 
 
