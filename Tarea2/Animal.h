@@ -1,8 +1,6 @@
 #ifndef Animal_H_
 #define Animal_H_
 
-#define SIZE 1000
-
 typedef struct Animal{
     void *fuerza;
     char tipo_fuerza;
@@ -28,6 +26,6 @@ void HuirSiempre(Animal* a1 ,Animal* a2);
 void ComerAleatorio(Animal* a1 ,Animal* a2);
 
 void auxImprimirTipo(char tipo, void* valor);
-
+int AtributoANumero(char tipo, void *valor);
 
 #endif

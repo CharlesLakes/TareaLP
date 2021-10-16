@@ -137,11 +137,13 @@ void ComerOHuir(Animal* a1, Animal* a2){
     }
 };
 
+
+
 int AtributoANumero(char tipo, void *valor){
     if(tipo == 'e') 
         return *((int *) valor);
     if(tipo == 'f')
-        return (int) *((float *) valor);
+        return (int) (*((float *) valor) + 0.5);
     if(tipo == 'c')
         return ((int) *((char *) valor))/4; 
     return 0;
