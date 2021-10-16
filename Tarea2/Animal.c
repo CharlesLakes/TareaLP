@@ -211,6 +211,18 @@ void ComerSiempre(Animal* a1 ,Animal* a2){
 };
 
 
+int* ObtenerPosicionAnimal(Animal* a){
+    int *resultado = (int *)malloc(sizeof(int)*2);
+    for(int i = 0;i < SIZE; i++)
+        for(int j = 0;j < SIZE; j++)
+            if(&(AUX_MUNDO[i][j]) == a){
+                resultado[0] = i;
+                resultado[1] = j;
+                return resultado; 
+            };
+    ;
+}
+
 void HuirSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad))
         return;

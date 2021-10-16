@@ -28,6 +28,7 @@ void ComerAleatorio(Animal* a1 ,Animal* a2);
 void auxImprimirTipo(char tipo, void* valor);
 int AtributoANumero(char tipo, void *valor);
 
+#define SIZE 1000
 Animal** AUX_MUNDO;
 
 #endif

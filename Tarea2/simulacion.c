@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Animal.h"
-#define SIZE 1000
+
 
 void BorrarMundo(Animal **Mundo){
     for(int i = 0; i < SIZE; i++){
@@ -50,7 +50,7 @@ Animal** CrearMundo(){
 }
 
 void AvanzarIteracion(Animal** Mundo){
-
+    
 };
 
 void Menu(){
