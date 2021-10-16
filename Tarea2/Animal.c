@@ -203,10 +203,12 @@ void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
 
 void ComerSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_resistencia,a2->resistencia)){
-        Borrar(a2);
+        *a2 = *a1;
+        Borrar(a1);
         return;
     }
-    Borrar(a1);
+    *a1 = *a2;
+    Borrar(a2);
     return;
 };
 
@@ -239,13 +241,20 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
         else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_MUNDO[(y - 1)%SIZE][x].velocidad == NULL && AUX_MUNDO[(y - 1)%SIZE][x].resistencia == NULL)
             temp = &(AUX_MUNDO[(y - 1)%SIZE][x]);
         
-        if(temp != NULL)
+        if(temp != NULL){
             *temp = *a1;
-        Borrar(a1);
+            Borrar(a1);
+        }else{
+            *a1 = *a2;
+            Borrar(a2);
+        }
+        
         free(pos);
-
+        return;
     }
-    Borrar(a1);
+    *a1 = *a2;
+    Borrar(a2);
+
 };
 
 void ComerAleatorio(Animal* a1 ,Animal* a2){
@@ -278,9 +287,11 @@ void ComerAleatorio(Animal* a1 ,Animal* a2){
     }
 
     if(AtributoANumero(tipo_a1,valor_a1) > AtributoANumero(tipo_a2,valor_a2)){
-        Borrar(a2);
+        *a2 = *a1;
+        Borrar(a1);
         return;
     }
-    Borrar(a1);
+    *a1 = *a2;
+    Borrar(a2);
 
 };
