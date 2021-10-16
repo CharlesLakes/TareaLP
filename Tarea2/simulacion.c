@@ -74,7 +74,7 @@ void Menu(){
             scanf("%d",&x);
             printf("y: ");
             scanf("%d",&y);
-            CrearAnimal(&(Mapa[x][y]));
+            CrearAnimal(&(Mapa[y][x]));
         }else if(opcion == 2){
             AvanzarIteracion(Mapa);
         }else if(opcion == 3){

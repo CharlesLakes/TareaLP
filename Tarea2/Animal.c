@@ -224,9 +224,27 @@ int* ObtenerPosicionAnimal(Animal* a){
 }
 
 void HuirSiempre(Animal* a1 ,Animal* a2){
-    if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad))
-        return;
-    
+    if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad)){
+        int *pos = ObtenerPosicionAnimal(a1),x,y;
+        Animal* temp;
+        y = pos[0];
+        x = pos[1];
+
+        if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].velocidad == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].resistencia == NULL)
+            temp = &(AUX_MUNDO[y][(x - 1)%SIZE]);
+        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_MUNDO[(y + 1)%SIZE][x].velocidad == NULL && AUX_MUNDO[(y + 1)%SIZE][x].resistencia == NULL)
+            temp = &(AUX_MUNDO[(y + 1)%SIZE][x]);
+        else if(AUX_MUNDO[y][(x  + 1)%SIZE].fuerza == NULL && AUX_MUNDO[y][(x  + 1)%SIZE].velocidad == NULL && AUX_MUNDO[y][(x  + 1)%SIZE].resistencia == NULL)
+            temp = &(AUX_MUNDO[y][(x + 1)%SIZE]);
+        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_MUNDO[(y - 1)%SIZE][x].velocidad == NULL && AUX_MUNDO[(y - 1)%SIZE][x].resistencia == NULL)
+            temp = &(AUX_MUNDO[(y - 1)%SIZE][x]);
+        
+        if(temp != NULL)
+            *temp = *a1;
+        Borrar(a1);
+        free(pos);
+
+    }
     Borrar(a1);
 };
 
