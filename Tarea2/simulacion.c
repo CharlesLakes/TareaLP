@@ -3,10 +3,6 @@
 #include <time.h>
 #include "Animal.h"
 
-int Absoluto(int numero){
-    if(numero < 0) return -numero;
-    return numero;
-}
 
 int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo){
     int select;

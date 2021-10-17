@@ -43,8 +43,6 @@ int AtributoANumero(char tipo, void *valor);
 void* CopiarMemoriaDeTipo(char tipo, void *valor);
 void* auxiliarAsignacionDeTipo(char tipo);
 int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo);
-int Absoluto(int numero);
-
 
 #define SIZE 1000
 Animal** AUX_MUNDO;
