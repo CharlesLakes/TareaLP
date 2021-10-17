@@ -167,11 +167,38 @@ int Comparar(Animal* a1, Animal* a2){
 
 };
 
+void* CopiarMemoriaDeTipo(char tipo, void *valor){
+    void* atributo;
+    if(tipo == 'e'){
+        int *temp = (int *)malloc(sizeof(int));
+        *temp = *((int *) valor);
+        atributo = temp;
+    }else if(tipo == 'c'){
+        char *temp = (char *)malloc(sizeof(char));
+        *temp = *((char *) valor);
+        atributo = temp;
+    }else if(tipo == 'f'){
+        float *temp = (float *)malloc(sizeof(float));
+        *temp = *((float *) valor);
+        atributo = temp;
+    }; 
+    return atributo; 
+};
+
+
 void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){
-    if(!Comparar(a1,a2))
+    if(!Comparar(a1,a2)){
         *hijo = *a1;
-    else 
+        hijo->fuerza = CopiarMemoriaDeTipo(hijo->tipo_fuerza,a1->fuerza);
+        hijo->velocidad = CopiarMemoriaDeTipo(hijo->tipo_velocidad,a1->velocidad);
+        hijo->resistencia = CopiarMemoriaDeTipo(hijo->tipo_resistencia,a1->resistencia);
+    }else{
         *hijo = *a2;
+        hijo->fuerza = CopiarMemoriaDeTipo(hijo->tipo_fuerza,a2->fuerza);
+        hijo->velocidad = CopiarMemoriaDeTipo(hijo->tipo_velocidad,a2->velocidad);
+        hijo->resistencia = CopiarMemoriaDeTipo(hijo->tipo_resistencia,a2->resistencia);
+    }
+
 }
 
 void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
@@ -186,13 +213,13 @@ void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
     }
 
     hijo->tipo_fuerza = temp1->tipo_fuerza;
-    hijo->fuerza = temp1->fuerza;
+    hijo->fuerza = CopiarMemoriaDeTipo(temp1->tipo_fuerza,temp1->fuerza);
 
     hijo->tipo_velocidad = temp1->tipo_velocidad;
-    hijo->velocidad = temp1->velocidad;
+    hijo->velocidad = CopiarMemoriaDeTipo(temp1->tipo_velocidad,temp1->velocidad);
 
     hijo->tipo_resistencia = temp2->tipo_resistencia;
-    hijo->resistencia = temp2->resistencia;
+    hijo->resistencia = CopiarMemoriaDeTipo(temp2->tipo_resistencia,temp2->resistencia);
 
     hijo->reproduccion = temp1->reproduccion;
     hijo->comerHuir = temp2->comerHuir;
@@ -203,34 +230,17 @@ void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
 
 void ComerSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_resistencia,a2->resistencia)){
-        *a2 = *a1;
-        Borrar(a1);
+        Borrar(a2);
         return;
     }
-    *a1 = *a2;
-    Borrar(a2);
+    Borrar(a1);
     return;
 };
 
-
-int* ObtenerPosicionAnimal(Animal* a){
-    int *resultado = (int *)malloc(sizeof(int)*2);
-    for(int i = 0;i < SIZE; i++)
-        for(int j = 0;j < SIZE; j++)
-            if(&(AUX_MUNDO[i][j]) == a){
-                resultado[0] = i;
-                resultado[1] = j;
-                return resultado; 
-            };
-    ;
-}
-
 void HuirSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad)){
-        int *pos = ObtenerPosicionAnimal(a1),x,y;
+        int x = aux_x, y = aux_y;
         Animal* temp;
-        y = pos[0];
-        x = pos[1];
 
         if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].velocidad == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].resistencia == NULL)
             temp = &(AUX_MUNDO[y][(x - 1)%SIZE]);
@@ -243,17 +253,16 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
         
         if(temp != NULL){
             *temp = *a1;
-            Borrar(a1);
+            a1->fuerza = NULL;
+            a1->velocidad = NULL;
+            a1->resistencia = NULL;
         }else{
-            *a1 = *a2;
-            Borrar(a2);
+            Borrar(a1);
         }
         
-        free(pos);
         return;
     }
-    *a1 = *a2;
-    Borrar(a2);
+    Borrar(a1);
 
 };
 
@@ -287,11 +296,9 @@ void ComerAleatorio(Animal* a1 ,Animal* a2){
     }
 
     if(AtributoANumero(tipo_a1,valor_a1) > AtributoANumero(tipo_a2,valor_a2)){
-        *a2 = *a1;
-        Borrar(a1);
+        Borrar(a2);
         return;
     }
-    *a1 = *a2;
-    Borrar(a2);
+    Borrar(a1);
 
 };

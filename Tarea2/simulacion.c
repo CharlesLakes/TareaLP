@@ -4,6 +4,8 @@
 #include "Animal.h"
 
 
+
+
 void BorrarMundo(Animal **Mundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
@@ -17,19 +19,13 @@ void BorrarMundo(Animal **Mundo){
 }
 
 void MostrarMundo(Animal **Mundo){
-    printf("Lista animales de el mundo");
+    printf("Lista animales de el mundo\n");
     printf("Cordenada\t(fuerza,velocidad,resistencia)\n");
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[i][j].fuerza != NULL && Mundo[i][j].velocidad != NULL && Mundo[i][j].resistencia != NULL){
-                printf("(%d,%d)\t",i,j);
-                printf("(");
-                auxImprimirTipo(Mundo[i][j].tipo_fuerza,Mundo[i][j].fuerza);
-                printf(",");
-                auxImprimirTipo(Mundo[i][j].tipo_velocidad,Mundo[i][j].velocidad);
-                printf(",");
-                auxImprimirTipo(Mundo[i][j].tipo_resistencia,Mundo[i][j].resistencia);
-                printf(")\n");
+                printf("(%d,%d):\t",j,i);
+                MostrarAnimal(&(Mundo[i][j]));
             };   
         }
     }
@@ -49,14 +45,100 @@ Animal** CrearMundo(){
     return Mundo;
 }
 
-void AvanzarIteracion(Animal** Mundo){
+void Colision(Animal* inicio, Animal* destino, Animal* hijo){
+    Animal temp = *inicio;
+    inicio->fuerza = NULL;
+    inicio->velocidad = NULL;
+    inicio->resistencia = NULL;
+
+    Reproducir(&temp,destino,hijo);
+    ComerOHuir(&temp,destino);
+
+    if(temp.fuerza != NULL && temp.velocidad != NULL && temp.resistencia != NULL)
+        *destino = temp;
     
+}
+
+void ProcesarHijo(Animal hijo, Animal** Mundo, Animal** NuevoMundo, int x , int y){
+    if(Mundo[y][(x  - 1)%SIZE].fuerza == NULL && NuevoMundo[y][(x  - 1)%SIZE].fuerza == NULL)
+        NuevoMundo[y][(x  - 1)%SIZE] = hijo;
+    
+    else if(Mundo[(y + 1)%SIZE][x].fuerza == NULL  && NuevoMundo[(y + 1)%SIZE][x].fuerza == NULL){
+        NuevoMundo[(y + 1)%SIZE][x] = hijo;
+    }
+    else if(Mundo[y][(x  + 1)%SIZE].fuerza == NULL && NuevoMundo[y][(x  + 1)%SIZE].fuerza == NULL )
+        NuevoMundo[y][(x + 1)%SIZE] = hijo;
+    else if(Mundo[(y - 1)%SIZE][x].fuerza == NULL && NuevoMundo[(y - 1)%SIZE][x].fuerza == NULL )
+        NuevoMundo[(y - 1)%SIZE][x] = hijo;
+    else{
+        Borrar(&hijo);
+    }
+}   
+
+void LimpiarMundo(Animal** Mundo){
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j < SIZE; j++){
+            Mundo[j][i].fuerza = NULL;
+            Mundo[j][i].velocidad = NULL;
+            Mundo[j][i].resistencia = NULL;
+        }
+    }
+}
+
+void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
+    AUX_MUNDO = Mundo;
+    AUX_NUEVOMUNDO = NuevoMundo;
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j < SIZE; j++){
+            if(Mundo[i][j].fuerza != NULL && Mundo[i][j].velocidad != NULL && Mundo[i][j].resistencia != NULL){
+                //int mov = rand() % 4;
+                printf("(%d,%d)\n",i,j);
+                int mov;
+                printf("Opcion: ");
+                scanf("%d",&mov);
+                Animal hijo;
+                
+
+                if(mov == 0){
+                    aux_y = (i + 1)%SIZE;
+                    aux_x = j;
+                }else if(mov == 1){
+                    aux_y = (i - 1)%SIZE;
+                    aux_x = j;
+                }else if(mov == 2){
+                    aux_y = i;
+                    aux_x = (j + 1)%SIZE;
+                    
+                }else if(mov == 3){
+                    aux_y = i;
+                    aux_x = (j - 1)%SIZE;
+                }
+
+                if(aux_x < 0) aux_x = SIZE + aux_x;
+                if(aux_y < 0) aux_y = SIZE + aux_y;
+                printf("d: (%d,%d)\n",aux_x,aux_y);
+
+                if(NuevoMundo[aux_y][aux_x].fuerza != NULL && NuevoMundo[aux_y][aux_x].velocidad != NULL && NuevoMundo[aux_y][aux_x].resistencia != NULL){
+                    Colision(&(Mundo[i][j]),&(NuevoMundo[aux_y][aux_x]),&hijo);
+                    ProcesarHijo(hijo,Mundo,NuevoMundo,aux_x,aux_y);
+                }else{
+                    NuevoMundo[aux_y][aux_x] = Mundo[i][j];
+
+                    Mundo[i][j].fuerza = NULL;
+                    Mundo[i][j].resistencia = NULL;
+                    Mundo[i][j].velocidad = NULL;
+                };
+            }
+        }
+    }
+    LimpiarMundo(Mundo);
 };
 
 void Menu(){
     int flag = 1, opcion;
-    Animal** Mapa = CrearMundo();
-
+    Animal **temp;
+    Animal **Mundo = CrearMundo();
+    Animal **MundoTemporal = CrearMundo();
     printf(" -- Menu -- \n");
     do{
         printf("1. Crear un animal\n");
@@ -74,11 +156,14 @@ void Menu(){
             scanf("%d",&x);
             printf("y: ");
             scanf("%d",&y);
-            CrearAnimal(&(Mapa[y][x]));
+            CrearAnimal(&(Mundo[y][x]));
         }else if(opcion == 2){
-            AvanzarIteracion(Mapa);
+            AvanzarIteracion(Mundo,MundoTemporal);
+            temp = Mundo;
+            Mundo = MundoTemporal;
+            MundoTemporal = temp;
         }else if(opcion == 3){
-            MostrarMundo(Mapa);
+            MostrarMundo(Mundo);
         }else{
             flag = 0;
         };
@@ -86,7 +171,9 @@ void Menu(){
 
     } while (flag);
 
-    BorrarMundo(Mapa);
+    BorrarMundo(Mundo);
+
+
 }
     
     
