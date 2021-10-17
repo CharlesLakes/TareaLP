@@ -3,6 +3,10 @@
 #include <time.h>
 #include "Animal.h"
 
+int Absoluto(int numero){
+    if(numero < 0) return -numero;
+    return numero;
+}
 
 int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo){
     int select;
@@ -109,13 +113,31 @@ Animal** CrearMundo(){
     return Mundo;
 }
 
-void Colision(Animal* inicio, Animal* destino, Animal* hijo){
+void ProcesarHijo(Animal hijo, Animal** NuevoMundo, int x , int y){
+    if(NuevoMundo[y][(SIZE + (x  - 1)%SIZE)%SIZE].fuerza == NULL)
+        NuevoMundo[y][(SIZE + (x  - 1)%SIZE)%SIZE] = hijo;
+    else if(NuevoMundo[(SIZE + (y - 1)%SIZE)%SIZE][x].fuerza == NULL)
+        NuevoMundo[(SIZE + (y - 1)%SIZE)%SIZE][x] = hijo;
+    else if(NuevoMundo[y][(SIZE + (x  + 1)%SIZE)%SIZE].fuerza == NULL )
+        NuevoMundo[y][(SIZE + (x  + 1)%SIZE)%SIZE] = hijo;
+    else if(NuevoMundo[(SIZE + (y + 1)%SIZE)%SIZE][x].fuerza == NULL )
+        NuevoMundo[(SIZE + (y + 1)%SIZE)%SIZE][x] = hijo;
+    else{
+        Borrar(&hijo);
+    }
+}   
+
+
+void Colision(Animal* inicio, Animal* destino, Animal** NuevoMundo, int x , int y){
+    Animal hijo;
     Animal temp = *inicio;
+
     inicio->fuerza = NULL;
     inicio->velocidad = NULL;
     inicio->resistencia = NULL;
 
-    Reproducir(&temp,destino,hijo);
+    Reproducir(&temp,destino,&hijo);
+    ProcesarHijo(hijo,NuevoMundo,x,y);
     ComerOHuir(&temp,destino);
 
     if(temp.fuerza != NULL && temp.velocidad != NULL && temp.resistencia != NULL)
@@ -123,19 +145,6 @@ void Colision(Animal* inicio, Animal* destino, Animal* hijo){
     
 }
 
-void ProcesarHijo(Animal hijo, Animal** Mundo, Animal** NuevoMundo, int x , int y){
-    if(Mundo[y][(x  - 1)%SIZE].fuerza == NULL && NuevoMundo[y][(x  - 1)%SIZE].fuerza == NULL)
-        NuevoMundo[y][(x  - 1)%SIZE] = hijo;
-    else if(Mundo[(y - 1)%SIZE][x].fuerza == NULL  && NuevoMundo[(y - 1)%SIZE][x].fuerza == NULL)
-        NuevoMundo[(y - 1)%SIZE][x] = hijo;
-    else if(Mundo[y][(x  + 1)%SIZE].fuerza == NULL && NuevoMundo[y][(x  + 1)%SIZE].fuerza == NULL )
-        NuevoMundo[y][(x + 1)%SIZE] = hijo;
-    else if(Mundo[(y + 1)%SIZE][x].fuerza == NULL && NuevoMundo[(y + 1)%SIZE][x].fuerza == NULL )
-        NuevoMundo[(y + 1)%SIZE][x] = hijo;
-    else{
-        Borrar(&hijo);
-    }
-}   
 
 void LimpiarMundo(Animal** Mundo){
     for(int i = 0; i < SIZE; i++){
@@ -153,12 +162,12 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[j][i].fuerza != NULL && Mundo[j][i].velocidad != NULL && Mundo[j][i].resistencia != NULL){
-                int mov = rand() % 4;
-                /*printf("(%d,%d)\n",i,j);
+                //int mov = rand() % 4;
+                printf("(%d,%d)\n",i,j);
                 int mov;
                 printf("Opcion: ");
-                scanf("%d",&mov);*/
-                Animal hijo;
+                scanf("%d",&mov);
+
                 
 
                 if(mov == 0){
@@ -181,8 +190,7 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
                 //printf("d: (%d,%d)\n",aux_x,aux_y);
 
                 if(NuevoMundo[aux_y][aux_x].fuerza != NULL && NuevoMundo[aux_y][aux_x].velocidad != NULL && NuevoMundo[aux_y][aux_x].resistencia != NULL){
-                    Colision(&(Mundo[j][i]),&(NuevoMundo[aux_y][aux_x]),&hijo);
-                    ProcesarHijo(hijo,Mundo,NuevoMundo,aux_x,aux_y);
+                    Colision(&(Mundo[j][i]),&(NuevoMundo[aux_y][aux_x]),NuevoMundo,aux_x,aux_y);
                 }else{
                     NuevoMundo[aux_y][aux_x] = Mundo[j][i];
 

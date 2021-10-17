@@ -12,23 +12,7 @@ typedef struct Animal{
     void (*comerHuir)(struct Animal*, struct Animal*);
 }Animal;
 
-typedef struct elementoReproduccionOComerHuir{
-    char* nombre;
-    void (*reproduccion)(Animal*, Animal*, Animal*);
-    void (*comerHuir)(Animal*, Animal*);
-}elementoCallback;
 
-elementoCallback reproducciones[] = {
-    {"ReproduccionSimple",ReproduccionSimple,0},
-    {"ReproduccionCruzada",ReproduccionCruzada,0}
-};
-
-elementoCallback funsComerOHuir[] = {
-    {"ComerSiempre",0,ComerSiempre},
-    {"HuirSiempre",0,HuirSiempre},
-    {"ComerAleatorio",0,ComerAleatorio}
-
-};
 
 // Animal
 
@@ -47,14 +31,19 @@ void ComerAleatorio(Animal* a1 ,Animal* a2);
 
 // Auxiliares 
 
+typedef struct elementoReproduccionOComerHuir{
+    char* nombre;
+    void (*reproduccion)(Animal*, Animal*, Animal*);
+    void (*comerHuir)(Animal*, Animal*);
+}elementoCallback;
+
+
 void auxImprimirTipo(char tipo, void* valor);
 int AtributoANumero(char tipo, void *valor);
 void* CopiarMemoriaDeTipo(char tipo, void *valor);
 void* auxiliarAsignacionDeTipo(char tipo);
 int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo);
-
-
-
+int Absoluto(int numero);
 
 
 #define SIZE 1000

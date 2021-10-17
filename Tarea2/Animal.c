@@ -4,6 +4,18 @@
 #include <time.h>
 
 
+elementoCallback reproducciones[] = {
+    {"ReproduccionSimple",ReproduccionSimple,0},
+    {"ReproduccionCruzada",ReproduccionCruzada,0}
+};
+
+elementoCallback funsComerOHuir[] = {
+    {"ComerSiempre",0,ComerSiempre},
+    {"HuirSiempre",0,HuirSiempre},
+    {"ComerAleatorio",0,ComerAleatorio}
+
+};
+
 /*****
 * void CrearAnimal
 ******
@@ -93,6 +105,19 @@ void MostrarAnimal(Animal *a){
     printf("\n");
 };
 
+/*****
+* void Reproducir
+******
+* La funcion eligue la funcion de reproduccion entre dos animales y la ejecuta
+******
+* Input:
+* Animal *a1: puntero animal
+* Animal *a2: puntero animal
+* Animal *hijo: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
     int resultado = rand() % 2;
     if(resultado){
@@ -100,22 +125,34 @@ void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
         MostrarAnimal(a1);
         a1->reproduccion(a1,a2,hijo);
     }else{
-        printf("Se usara la función de reproducción del Aniaml:\n");
-        MostrarAnimal(a1);
+        printf("Se usara la función de reproducción del Animal:\n");
+        MostrarAnimal(a2);
         a2->reproduccion(a2,a1,hijo);
     }
 
 };
 
+/*****
+* void  ComerOHuir
+******
+* La funcion eligue la funcion de ComerHuir y la ejecuta
+******
+* Input:
+* Animal *a1: puntero animal
+* Animal *a2: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void ComerOHuir(Animal* a1, Animal* a2){
     int resultado = rand() % 2;
     if(resultado){
-        printf("Se usara la función de comer o huir del animal:\n");
+        printf("Se usara la función de comer o huir del Animal:\n");
         MostrarAnimal(a1);
         a1->comerHuir(a1,a2);
     }else{
-        printf("Se usara la función de comer o huir del animal:\n");
-        MostrarAnimal(a1);
+        printf("Se usara la función de comer o huir del Animal:\n");
+        MostrarAnimal(a2);
         a2->comerHuir(a2,a1);
     }
 };
@@ -123,7 +160,19 @@ void ComerOHuir(Animal* a1, Animal* a2){
 
 
 
-
+/*****
+* void  Comparar
+******
+* La funcion compara los atributos entre dos animales y si el a1 tiene mas atributos mayores
+* se retorna 0 y de otra forma 1
+******
+* Input:
+* Animal *a1: puntero animal
+* Animal *a2: puntero animal
+******
+* Returns:
+* int, 0 o 1 dependiendo quien tiene mas atributos mayores
+*****/
 int Comparar(Animal* a1, Animal* a2){
     int balanceador = 0;
     if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_fuerza,a2->fuerza))
@@ -201,14 +250,14 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
         int x = aux_x, y = aux_y;
         Animal* temp;
 
-        if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  - 1)%SIZE].fuerza == NULL)
-            temp = &(AUX_NUEVOMUNDO[y][(x - 1)%SIZE]);
-        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y - 1)%SIZE][x].fuerza)
-            temp = &(AUX_NUEVOMUNDO[(y - 1)%SIZE][x]);
-        else if(AUX_MUNDO[y][(x  + 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  + 1)%SIZE].fuerza)
-            temp = &(AUX_NUEVOMUNDO[y][(x + 1)%SIZE]);
-        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y + 1)%SIZE][x].fuerza == NULL)
-            temp = &(AUX_NUEVOMUNDO[(y + 1)%SIZE][x]);
+        if(AUX_NUEVOMUNDO[y][(SIZE + (x  - 1)%SIZE)%SIZE].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[y][(SIZE + (x - 1)%SIZE)%SIZE]);
+        else if(AUX_NUEVOMUNDO[(SIZE + (y - 1)%SIZE)%SIZE][x].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[(SIZE + (y - 1)%SIZE)%SIZE][x]);
+        else if(AUX_NUEVOMUNDO[y][(SIZE + (x  + 1)%SIZE)%SIZE].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[y][(SIZE + (x  + 1)%SIZE)%SIZE]);
+        else if(AUX_NUEVOMUNDO[(SIZE + (y + 1)%SIZE)%SIZE][x].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[(SIZE + (y + 1)%SIZE)%SIZE][x]);
         
         if(temp != NULL){
             *temp = *a1;
