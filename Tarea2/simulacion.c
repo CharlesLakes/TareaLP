@@ -91,7 +91,7 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[i][j].fuerza != NULL && Mundo[i][j].velocidad != NULL && Mundo[i][j].resistencia != NULL){
-                //int mov = rand() % 4;
+                int mov = rand() % 4;
                 printf("(%d,%d)\n",i,j);
                 int mov;
                 printf("Opcion: ");
@@ -116,7 +116,7 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
 
                 if(aux_x < 0) aux_x = SIZE + aux_x;
                 if(aux_y < 0) aux_y = SIZE + aux_y;
-                printf("d: (%d,%d)\n",aux_x,aux_y);
+                //printf("d: (%d,%d)\n",aux_x,aux_y);
 
                 if(NuevoMundo[aux_y][aux_x].fuerza != NULL && NuevoMundo[aux_y][aux_x].velocidad != NULL && NuevoMundo[aux_y][aux_x].resistencia != NULL){
                     Colision(&(Mundo[i][j]),&(NuevoMundo[aux_y][aux_x]),&hijo);
@@ -151,11 +151,15 @@ void Menu(){
             printf("Opción erroena.\n");
         }else if(opcion == 1){
             int x,y;
-            printf("Ingresa las cordenadas. (x en [0,1000]), y en [0,1000]\n");
-            printf("x: ");
-            scanf("%d",&x);
-            printf("y: ");
-            scanf("%d",&y);
+            do{
+                printf("Ingresa las cordenadas. (x en [0,1000]), y en [0,1000]\n");
+                printf("x: ");
+                scanf("%d",&x);
+                printf("y: ");
+                scanf("%d",&y);
+                if(Mundo[y][x].fuerza != NULL)
+                    printf("Lugar ocupado.\n");
+            } while (Mundo[y][x].fuerza != NULL);
             CrearAnimal(&(Mundo[y][x]));
         }else if(opcion == 2){
             AvanzarIteracion(Mundo,MundoTemporal);
@@ -172,6 +176,7 @@ void Menu(){
     } while (flag);
 
     BorrarMundo(Mundo);
+    BorrarMundo(MundoTemporal);
 
 
 }

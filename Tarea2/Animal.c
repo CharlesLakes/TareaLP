@@ -101,15 +101,15 @@ void auxImprimirTipo(char tipo, void* valor){
 };
 
 void MostrarAnimal(Animal *a){
-    printf("fuerza: ");
+    printf("\tfuerza: ");
     auxImprimirTipo(a->tipo_fuerza,a->fuerza);
     printf("\n");
 
-    printf("velocidad: ");
+    printf("\tvelocidad: ");
     auxImprimirTipo(a->tipo_velocidad,a->velocidad);
     printf("\n");
     
-    printf("resistencia: ");
+    printf("\tresistencia: ");
     auxImprimirTipo(a->tipo_resistencia,a->resistencia);
     printf("\n");
 };
@@ -117,10 +117,12 @@ void MostrarAnimal(Animal *a){
 void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
     int resultado = rand() % 2;
     if(resultado){
-        printf("Se usara la función de reproducción del primer animal.\n");
+        printf("Se usara la función de reproducción del Animal.\n");
+        MostrarAnimal(a1);
         a1->reproduccion(a1,a2,hijo);
     }else{
-        printf("Se usara la función de reproducción del segundo animal.\n");
+        printf("Se usara la función de reproducción del Aniaml:\n");
+        MostrarAnimal(a1);
         a2->reproduccion(a2,a1,hijo);
     }
 
@@ -129,10 +131,12 @@ void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
 void ComerOHuir(Animal* a1, Animal* a2){
     int resultado = rand() % 2;
     if(resultado){
-        printf("Se usara la función de comer o huir del primer animal.\n");
+        printf("Se usara la función de comer o huir del animal:\n");
+        MostrarAnimal(a1);
         a1->comerHuir(a1,a2);
     }else{
-        printf("Se usara la función de comer o huir del segundo animal.\n");
+        printf("Se usara la función de comer o huir del animal:\n");
+        MostrarAnimal(a1);
         a2->comerHuir(a2,a1);
     }
 };
@@ -242,20 +246,17 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
         int x = aux_x, y = aux_y;
         Animal* temp;
 
-        if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].velocidad == NULL && AUX_MUNDO[y][(x  - 1)%SIZE].resistencia == NULL)
-            temp = &(AUX_MUNDO[y][(x - 1)%SIZE]);
-        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_MUNDO[(y + 1)%SIZE][x].velocidad == NULL && AUX_MUNDO[(y + 1)%SIZE][x].resistencia == NULL)
-            temp = &(AUX_MUNDO[(y + 1)%SIZE][x]);
-        else if(AUX_MUNDO[y][(x  + 1)%SIZE].fuerza == NULL && AUX_MUNDO[y][(x  + 1)%SIZE].velocidad == NULL && AUX_MUNDO[y][(x  + 1)%SIZE].resistencia == NULL)
-            temp = &(AUX_MUNDO[y][(x + 1)%SIZE]);
-        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_MUNDO[(y - 1)%SIZE][x].velocidad == NULL && AUX_MUNDO[(y - 1)%SIZE][x].resistencia == NULL)
-            temp = &(AUX_MUNDO[(y - 1)%SIZE][x]);
+        if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  - 1)%SIZE].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[y][(x - 1)%SIZE]);
+        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y + 1)%SIZE][x].fuerza)
+            temp = &(AUX_NUEVOMUNDO[(y + 1)%SIZE][x]);
+        else if(AUX_MUNDO[y][(x  + 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  + 1)%SIZE].fuerza)
+            temp = &(AUX_NUEVOMUNDO[y][(x + 1)%SIZE]);
+        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y - 1)%SIZE][x].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[(y - 1)%SIZE][x]);
         
         if(temp != NULL){
             *temp = *a1;
-            a1->fuerza = NULL;
-            a1->velocidad = NULL;
-            a1->resistencia = NULL;
         }else{
             Borrar(a1);
         }
