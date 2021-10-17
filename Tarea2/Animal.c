@@ -4,51 +4,17 @@
 #include <time.h>
 
 
-typedef struct elementoReproduccionOComerHuir{
-    char* nombre;
-    void (*reproduccion)(Animal*, Animal*, Animal*);
-    void (*comerHuir)(Animal*, Animal*);
-}elementoCallback;
-
-elementoCallback reproducciones[] = {
-    {"ReproduccionSimple",ReproduccionSimple,NULL},
-    {"ReproduccionCruzada",ReproduccionCruzada,NULL}
-};
-
-elementoCallback funsComerOHuir[] = {
-    {"ComerSiempre",NULL,ComerSiempre},
-    {"HuirSiempre",NULL,HuirSiempre},
-    {"ComerAleatorio",NULL,ComerAleatorio}
-
-};
-
-void* auxiliarAsignacionDeTipo(char tipo){
-    void* atributo;
-    if(tipo == 'e'){
-        atributo = (void *)malloc(sizeof(int));
-        scanf(" %d",(int *) atributo);
-    }else if(tipo == 'c'){
-        atributo = (void *)malloc(sizeof(char));
-        scanf(" %c",(char *) atributo);
-    }else if(tipo == 'f'){
-        atributo = (void *)malloc(sizeof(float));
-        scanf(" %f",(float *) atributo);
-    }; 
-    return atributo; 
-}
-
-int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo){
-    int select;
-    do{
-        for(int i = 0; i < largo; i++) 
-            printf("%d. %s\n",i + 1, listaCallbacks[i].nombre); 
-        printf("-> ");
-        scanf("%d",&select);
-        if(select < 1 || select > largo) printf("Entrada erronea.\nEscribelo nuevamente.\n\n");
-    } while (select < 1 || select > largo);
-    return select - 1;
-}
-
+/*****
+* void CrearAnimal
+******
+* La funcion crea un animal pidiendole al usuario las caracteristicas de el animal
+******
+* Input:
+* Animal *a: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void CrearAnimal(Animal* a){
     int pos;
 
@@ -79,7 +45,17 @@ void CrearAnimal(Animal* a){
     a->comerHuir = funsComerOHuir[pos].comerHuir;
 };
 
-
+/*****
+* void Borrar
+******
+* La funcion borra el animal y las memorias dinamicas respectivas
+******
+* Input:
+* Animal *a: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void Borrar(Animal* a){
     free(a->fuerza);
     free(a->velocidad);
@@ -91,15 +67,18 @@ void Borrar(Animal* a){
 };
 
 
-void auxImprimirTipo(char tipo, void* valor){
-    if(tipo == 'e')
-        printf("%d",*((int *) valor));
-    else if(tipo == 'c')
-        printf("%c",*((char *) valor));
-    else if(tipo == 'f')
-        printf("%f",*((float *) valor));
-};
 
+/*****
+* void MostrarAnimal
+******
+* La funcion muestra los atributos del animal por pantalla
+******
+* Input:
+* Animal *a: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void MostrarAnimal(Animal *a){
     printf("\tfuerza: ");
     auxImprimirTipo(a->tipo_fuerza,a->fuerza);
@@ -143,15 +122,7 @@ void ComerOHuir(Animal* a1, Animal* a2){
 
 
 
-int AtributoANumero(char tipo, void *valor){
-    if(tipo == 'e') 
-        return *((int *) valor);
-    if(tipo == 'f')
-        return (int) (*((float *) valor) + 0.5);
-    if(tipo == 'c')
-        return ((int) *((char *) valor))/4; 
-    return 0;
-};
+
 
 int Comparar(Animal* a1, Animal* a2){
     int balanceador = 0;
@@ -171,23 +142,7 @@ int Comparar(Animal* a1, Animal* a2){
 
 };
 
-void* CopiarMemoriaDeTipo(char tipo, void *valor){
-    void* atributo;
-    if(tipo == 'e'){
-        int *temp = (int *)malloc(sizeof(int));
-        *temp = *((int *) valor);
-        atributo = temp;
-    }else if(tipo == 'c'){
-        char *temp = (char *)malloc(sizeof(char));
-        *temp = *((char *) valor);
-        atributo = temp;
-    }else if(tipo == 'f'){
-        float *temp = (float *)malloc(sizeof(float));
-        *temp = *((float *) valor);
-        atributo = temp;
-    }; 
-    return atributo; 
-};
+
 
 
 void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){
@@ -248,12 +203,12 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
 
         if(AUX_MUNDO[y][(x  - 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  - 1)%SIZE].fuerza == NULL)
             temp = &(AUX_NUEVOMUNDO[y][(x - 1)%SIZE]);
-        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y + 1)%SIZE][x].fuerza)
-            temp = &(AUX_NUEVOMUNDO[(y + 1)%SIZE][x]);
+        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y - 1)%SIZE][x].fuerza)
+            temp = &(AUX_NUEVOMUNDO[(y - 1)%SIZE][x]);
         else if(AUX_MUNDO[y][(x  + 1)%SIZE].fuerza == NULL && AUX_NUEVOMUNDO[y][(x  + 1)%SIZE].fuerza)
             temp = &(AUX_NUEVOMUNDO[y][(x + 1)%SIZE]);
-        else if(AUX_MUNDO[(y - 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y - 1)%SIZE][x].fuerza == NULL)
-            temp = &(AUX_NUEVOMUNDO[(y - 1)%SIZE][x]);
+        else if(AUX_MUNDO[(y + 1)%SIZE][x].fuerza == NULL && AUX_NUEVOMUNDO[(y + 1)%SIZE][x].fuerza == NULL)
+            temp = &(AUX_NUEVOMUNDO[(y + 1)%SIZE][x]);
         
         if(temp != NULL){
             *temp = *a1;
