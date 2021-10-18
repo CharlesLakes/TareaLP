@@ -42,9 +42,9 @@ void CrearAnimal(Animal* a){
     a->velocidad = auxiliarAsignacionDeTipo(a->tipo_velocidad);
     printf("\n");
 
-    printf("Tipo de resitencia: ");
+    printf("Tipo de resistencia: ");
     scanf(" %c",&(a->tipo_resistencia));
-    printf("Valor de resitencia: ");
+    printf("Valor de resistencia: ");
     a->resistencia = auxiliarAsignacionDeTipo(a->tipo_resistencia);
     printf("\n");
 
