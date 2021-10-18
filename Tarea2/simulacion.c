@@ -287,7 +287,7 @@ void LimpiarMundo(Animal** Mundo){
 /*****
 * void AvanzarIteracion
 ******
-* Limpia el mundo sin borrar los animales
+* La funcion Muevo los animales y detecta las colisiones
 ******
 * Input:
 * Animal **Mundo: puntero de punteros Animal (lista de listas Animal) representa al mundo actual
@@ -302,11 +302,11 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[j][i].fuerza != NULL && Mundo[j][i].velocidad != NULL && Mundo[j][i].resistencia != NULL){
-                //int mov = rand() % 4;
-                printf("(%d,%d)\n",i,j);
+                int mov = rand() % 4;
+                /*printf("(%d,%d)\n",i,j);
                 int mov;
                 printf("Opcion: ");
-                scanf("%d",&mov);
+                scanf("%d",&mov);*/
 
                 
 
@@ -348,7 +348,7 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
 /*****
 * void Menu
 ******
-* Limpia el mundo sin borrar los animales
+* La funcion ejectuta el menu para que el usuario interactue con el programa
 ******
 * Input:
 ******
@@ -362,10 +362,10 @@ void Menu(){
     Animal **MundoTemporal = CrearMundo();
     printf(" -- Menu -- \n");
     do{
-        printf("1. Crear un animal\n");
-        printf("2. Avanzar iteración\n");
-        printf("3. Mostrar mundo\n");
-        printf("4. Terminar\n");
+        printf("1. Crear un animal.\n");
+        printf("2. Avanzar iteración.\n");
+        printf("3. Mostrar mundo.\n");
+        printf("4. Cerrar programa.\n");
         printf("-> ");
         scanf("%d",&opcion);
         if(0 >= opcion && opcion >= 4){
