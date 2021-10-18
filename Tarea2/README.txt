@@ -8,7 +8,7 @@ Con esto instalado para compilar se usa:
 Y para ejecutar se puede usar:
     make run
 O tambien:
-    ./main.O
+    ./main.o
 
 Si se quiere obtener los leaks de memoria se tiene que instalar valgrind con:
     apt-get install valgrind
