@@ -111,9 +111,9 @@ void MostrarAnimal(Animal *a){
 * La funcion eligue la funcion de reproduccion entre dos animales y la ejecuta
 ******
 * Input:
-* Animal *a1: puntero animal
-* Animal *a2: puntero animal
-* Animal *hijo: puntero animal
+* Animal *a1: puntero animal 2
+* Animal *a2: puntero animal 2
+* Animal *hijo: puntero animal hijo
 ******
 * Returns:
 * void, sin return
@@ -138,8 +138,8 @@ void Reproducir(Animal* a1, Animal* a2, Animal* hijo){
 * La funcion eligue la funcion de ComerHuir y la ejecuta
 ******
 * Input:
-* Animal *a1: puntero animal
-* Animal *a2: puntero animal
+* Animal *a1: puntero animal 1 
+* Animal *a2: puntero animal 2
 ******
 * Returns:
 * void, sin return
@@ -167,8 +167,8 @@ void ComerOHuir(Animal* a1, Animal* a2){
 * se retorna 0 y de otra forma 1
 ******
 * Input:
-* Animal *a1: puntero animal
-* Animal *a2: puntero animal
+* Animal *a1: puntero animal 1
+* Animal *a2: puntero animal 2
 ******
 * Returns:
 * int, 0 o 1 dependiendo quien tiene mas atributos mayores
@@ -193,7 +193,19 @@ int Comparar(Animal* a1, Animal* a2){
 
 
 
-
+/*****
+* void  ReproduccionSimple
+******
+* La funcion le asigna al hijo los atributos con el padre con mas atritubos mayores
+******
+* Input:
+* Animal *a1: puntero animal 1
+* Animal *a2: puntero animal 1
+* Animal *hijo: puntero animal hijo
+******
+* Returns:
+* void, sin return
+*****/
 void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){
     if(!Comparar(a1,a2)){
         *hijo = *a1;
@@ -209,6 +221,21 @@ void ReproduccionSimple(Animal* a1 ,Animal* a2 ,Animal* hijo){
 
 }
 
+
+/*****
+* void  ReproduccionCurzada
+******
+* La funcion le asigna al hijo (fuerza , velocidad , reproduccion) con el padre con mayor atributos
+* y (resistencia , comerHuir) al padreo con menos atributos mayores
+******
+* Input:
+* Animal *a1: puntero animal 1
+* Animal *a2: puntero animal 2
+* Animal *hijo: puntero animal hijp
+******
+* Returns:
+* void, sin return
+*****/
 void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
     Animal  *temp1, *temp2;
 
@@ -235,7 +262,20 @@ void ReproduccionCruzada(Animal* a1, Animal* a2, Animal* hijo){
     
 };
 
-
+/*****
+* void  ComerSiempre
+******
+* La funcion borra al segundo animal si la fuerza de el primero es mayor
+* a la resistencia de el segundo
+* de otra forma muere el primer animal
+******
+* Input:
+* Animal *a1: puntero animal 1
+* Animal *a2: puntero animal 2
+******
+* Returns:
+* void, sin return
+*****/
 void ComerSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_fuerza,a1->fuerza) > AtributoANumero(a2->tipo_resistencia,a2->resistencia)){
         Borrar(a2);
@@ -245,6 +285,19 @@ void ComerSiempre(Animal* a1 ,Animal* a2){
     return;
 };
 
+/*****
+* void  HuirSiempre
+******
+* La funcion si el primer animal es mas rapido que el segundo se escapa a otra casilla
+* de otra forma o muere
+******
+* Input:
+* Animal *a1: puntero animal
+* Animal *a2: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 void HuirSiempre(Animal* a1 ,Animal* a2){
     if(AtributoANumero(a1->tipo_velocidad,a1->velocidad) > AtributoANumero(a2->tipo_velocidad,a2->velocidad)){
         int x = aux_x, y = aux_y;
@@ -270,6 +323,20 @@ void HuirSiempre(Animal* a1 ,Animal* a2){
     Borrar(a1);
 
 };
+
+/*****
+* void  ComerAleatorio
+******
+* La funcion si el primer animal es mas rapido que el segundo se escapa a otra casilla
+* de otra forma o muere
+******
+* Input:
+* Animal *a1: puntero animal
+* Animal *a2: puntero animal
+******
+* Returns:
+* void, sin return
+*****/
 
 void ComerAleatorio(Animal* a1 ,Animal* a2){
     char tipo_a1, tipo_a2;

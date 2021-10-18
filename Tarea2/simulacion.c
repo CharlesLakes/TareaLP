@@ -3,7 +3,19 @@
 #include <time.h>
 #include "Animal.h"
 
-
+/*****
+* int auxiliarAsignacionDeCallbacks
+******
+* La funcion le piede al usuario que funcion se debe usar para el animal
+******
+* Input:
+* Animal *a: puntero animal
+* elementoCallback* listaCallbacks: lista de las funciones
+* Animal *hijo: puntero animal (hijo)
+******
+* Returns:
+* int, la seleccion de el usuario
+*****/
 int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int largo){
     int select;
     do{
@@ -15,6 +27,20 @@ int auxiliarAsignacionDeCallbacks(Animal *a,elementoCallback* listaCallbacks,int
     } while (select < 1 || select > largo);
     return select - 1;
 }
+
+/*****
+* void* CopiarMemoriaDeTipo
+******
+* La funcion copia el valor de la memoria de un atributo a otro
+* usando una diferente memoria de heap
+******
+* Input:
+* char tipo: es un caracter que indica el tipo de el valor
+* void *valor: punero void que apunta a la direccion de memoria que guarda el valor
+******
+* Returns:
+* void*, la nueva direccion de memoria
+*****/
 
 void* CopiarMemoriaDeTipo(char tipo, void *valor){
     void* atributo;
@@ -34,6 +60,17 @@ void* CopiarMemoriaDeTipo(char tipo, void *valor){
     return atributo; 
 };
 
+/*****
+* void* auxiliarAsignacionDeTipo
+******
+* La funcion le pide al usuario el valor de el atrbuto dependiendo de el tipo
+******
+* Input:
+* char tipo: es un caracter que indica el tipo de el valor
+******
+* Returns:
+* void*, la direccion de memoria de el atributo
+*****/
 void* auxiliarAsignacionDeTipo(char tipo){
     void* atributo;
     if(tipo == 'e'){
@@ -49,6 +86,18 @@ void* auxiliarAsignacionDeTipo(char tipo){
     return atributo; 
 }
 
+/*****
+* void auxImprimirTipo
+******
+* La funcion imprime el valor de un atributo dependiendo su tipo
+******
+* Input:
+* char tipo: es un caracter que indica el tipo de el valor
+* void *valor: punero void que apunta a la direccion de memoria que guarda el valor
+******
+* Returns:
+* void, sin return
+*****/
 void auxImprimirTipo(char tipo, void* valor){
     if(tipo == 'e')
         printf("%d",*((int *) valor));
@@ -58,7 +107,18 @@ void auxImprimirTipo(char tipo, void* valor){
         printf("%f",*((float *) valor));
 };
 
-
+/*****
+* void auxImprimirTipo
+******
+* La funcion imprime el valor de un atributo dependiendo su tipo
+******
+* Input:
+* char tipo: es un caracter que indica el tipo de el valor
+* void *valor: punero void que apunta a la direccion de memoria que guarda el valor
+******
+* Returns:
+* void, sin return
+*****/
 int AtributoANumero(char tipo, void *valor){
     if(tipo == 'e') 
         return *((int *) valor);
@@ -69,7 +129,17 @@ int AtributoANumero(char tipo, void *valor){
     return 0;
 };
 
-
+/*****
+* void BorrarMundo
+******
+* La funcion borra el mundo y los animales en el y sus memoerias respectivas
+******
+* Input:
+* Animal **Mundo: Es un punteros de punteros Animal (lista de listas de animales)
+******
+* Returns:
+* void, sin return
+*****/
 void BorrarMundo(Animal **Mundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
@@ -82,19 +152,41 @@ void BorrarMundo(Animal **Mundo){
     
 }
 
+/*****
+* void MostrarMundo
+******
+* La funcion muestra los animales de el mundo por pantalla
+******
+* Input:
+* Animal **Mundo: Es un punteros de punteros Animal (lista de listas de animales)
+******
+* Returns:
+* void, sin return
+*****/
 void MostrarMundo(Animal **Mundo){
     printf("Lista animales de el mundo\n");
     printf("Cordenada\t(fuerza,velocidad,resistencia)\n");
-    for(int i = 0; i < SIZE; i++){
-        for(int j = 0; j < SIZE; j++){
-            if(Mundo[i][j].fuerza != NULL && Mundo[i][j].velocidad != NULL && Mundo[i][j].resistencia != NULL){
-                printf("(%d,%d):\t",j,i);
-                MostrarAnimal(&(Mundo[i][j]));
+    for(int j = 0; j < SIZE; j++){
+        for(int i = 0; i < SIZE; i++){
+            if(Mundo[j][i].fuerza != NULL && Mundo[j][i].velocidad != NULL && Mundo[j][i].resistencia != NULL){
+                printf("(%d,%d):\t\n",i,j);
+                MostrarAnimal(&(Mundo[j][i]));
             };   
         }
     }
 }
 
+
+/*****
+* Animal** CrearMundo
+******
+* La funcion crear con memoria dinamica el mundo es decir una lista de listas
+******
+* Input:
+******
+* Returns:
+* Animal**, puntero de punteros animal el cual contiene el mundo
+*****/
 Animal** CrearMundo(){
     Animal **Mundo = (Animal **)malloc(sizeof(Animal *)*SIZE);
     for(int i = 0; i < SIZE; i++){
@@ -109,6 +201,21 @@ Animal** CrearMundo(){
     return Mundo;
 }
 
+/*****
+* Animal** ProcesarHijo
+******
+* La funcion coloca al hijo producido en su casilla correspondiente 
+* si esta ocupada muere
+******
+* Input:
+* Animal hijo: es el hijo generado
+* Animal** NuevoMundo: puntero de punteros Animal (lista de listas Animal)
+* int x: Cordenada x
+* int y: Cordenada y
+******
+* Returns:
+* Animal**, puntero de punteros animal el cual contiene el mundo
+*****/
 void ProcesarHijo(Animal hijo, Animal** NuevoMundo, int x , int y){
     if(NuevoMundo[y][(SIZE + (x  - 1)%SIZE)%SIZE].fuerza == NULL)
         NuevoMundo[y][(SIZE + (x  - 1)%SIZE)%SIZE] = hijo;
@@ -123,7 +230,22 @@ void ProcesarHijo(Animal hijo, Animal** NuevoMundo, int x , int y){
     }
 }   
 
-
+/*****
+* void Colision
+******
+* La funcion reliza el comportamiento tras colisionar
+* reporoduce a los animales y ejecuta comerohuir
+* ademas coloca al hijo en su ubicacion respectica
+******
+* Input:
+* Animal hijo: es el hijo generado
+* Animal** NuevoMundo: puntero de punteros Animal (lista de listas Animal)
+* int x: Cordenada x
+* int y: Cordenada y
+******
+* Returns:
+* Animal**, puntero de punteros animal el cual contiene el mundo
+*****/
 void Colision(Animal* inicio, Animal* destino, Animal** NuevoMundo, int x , int y){
     Animal hijo;
     Animal temp = *inicio;
@@ -141,7 +263,17 @@ void Colision(Animal* inicio, Animal* destino, Animal** NuevoMundo, int x , int 
     
 }
 
-
+/*****
+* void LimpiarMundo
+******
+* Limpia el mundo sin borrar los animales
+******
+* Input:
+* Animal** Mundo: puntero de punteros Animal (lista de listas Animal)
+******
+* Returns:
+* void, sin returns
+*****/
 void LimpiarMundo(Animal** Mundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
@@ -152,17 +284,29 @@ void LimpiarMundo(Animal** Mundo){
     }
 }
 
+/*****
+* void AvanzarIteracion
+******
+* Limpia el mundo sin borrar los animales
+******
+* Input:
+* Animal **Mundo: puntero de punteros Animal (lista de listas Animal) representa al mundo actual
+* Animal **NuevoMundo: puntero de punteros Animal (lista de listas Animal) representa al mundo temporal
+******
+* Returns:
+* void, sin returns
+*****/
 void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     AUX_MUNDO = Mundo;
     AUX_NUEVOMUNDO = NuevoMundo;
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[j][i].fuerza != NULL && Mundo[j][i].velocidad != NULL && Mundo[j][i].resistencia != NULL){
-                //int mov = rand() % 4;
-                printf("(%d,%d)\n",i,j);
+                int mov = rand() % 4;
+                /*printf("(%d,%d)\n",i,j);
                 int mov;
                 printf("Opcion: ");
-                scanf("%d",&mov);
+                scanf("%d",&mov);*/
 
                 
 
@@ -200,6 +344,17 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     LimpiarMundo(Mundo);
 };
 
+
+/*****
+* void Menu
+******
+* Limpia el mundo sin borrar los animales
+******
+* Input:
+******
+* Returns:
+* void, sin returns
+*****/
 void Menu(){
     int flag = 1, opcion;
     Animal **temp;
