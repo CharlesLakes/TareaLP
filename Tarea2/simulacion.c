@@ -302,11 +302,11 @@ void AvanzarIteracion(Animal **Mundo, Animal **NuevoMundo){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
             if(Mundo[j][i].fuerza != NULL && Mundo[j][i].velocidad != NULL && Mundo[j][i].resistencia != NULL){
-                int mov = rand() % 4;
-                /*printf("(%d,%d)\n",i,j);
+                //int mov = rand() % 4;
+                printf("(%d,%d)\n",i,j);
                 int mov;
                 printf("Opcion: ");
-                scanf("%d",&mov);*/
+                scanf("%d",&mov);
 
                 
 
