@@ -10,6 +10,9 @@ Y para ejecutar se puede usar:
 O tambien:
     ./main.o
 
+Si se quiere borrar todos los ejecutables se puede hacer con:
+    make clear
+
 Si se quiere obtener los leaks de memoria se tiene que instalar valgrind con:
     apt-get install valgrind
 y usar:

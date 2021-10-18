@@ -5,7 +5,7 @@ Animal.o: Animal.c Animal.h
 simulacion.o: simulacion.c Animal.h
 	gcc -c simulacion.c -Wall
 clear:
-	rm simulacion.o Animal.o main.o
+	rm *.o
 run: main.o
 	./main.o
 leaks: main.o
