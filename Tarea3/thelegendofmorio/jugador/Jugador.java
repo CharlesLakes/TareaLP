@@ -8,30 +8,23 @@ public abstract class Jugador {
     private String nombre;
     private int vida, xp, fuerza , inteligencia, energia, mana;
     private int vida_maxima, energia_maxima, mana_maxima;
-    private ArrayList<Mision> listo_misiones;
+    private ArrayList<Mision> lista_misiones;
 
-    public Jugador(String nombre,int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> listo_misiones){
+    public Jugador(String nombre,int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> lista_misiones){
         this.vida = vida;
         this.xp = xp;
         this.fuerza = fuerza;
         this.inteligencia = inteligencia;
         this.energia = energia;
         this.mana = mana;
-        this.listo_misiones = listo_misiones;
+        this.lista_misiones = lista_misiones;
     }
 
     public abstract int ataque();
     public abstract int hechizo();
-    public abstract void subir_experiencia();
+    public abstract void subir_experiencia(int xp);
 
-    public int getNivel(){
-        int[] limites_xp = {10,25,50,100,200,350,600,900};
-        for(int i = 0; i < limites_xp.length; i++){
-            if(this.xp < limites_xp[i])
-                return i + 1;
-        }
-        return 8;
-    }
+    
 
     // setters
     public void setNombre(String nombre){
@@ -64,6 +57,9 @@ public abstract class Jugador {
     public void setManaMaxima(int mana_maxima){
         this.mana_maxima = mana_maxima;
     }
+    public void setListaMisiones(ArrayList<Mision> lista_misiones){
+        this.lista_misiones = lista_misiones;
+    }
 
     // getters
     public String getNombre(){
@@ -91,9 +87,20 @@ public abstract class Jugador {
         return this.vida_maxima;
     }
     public int getEnergiaMaxima(){
-        return this.vida_maxima;
+        return this.energia_maxima;
     }
     public int getManaMaxima(){
-        return this.vida_maxima;
+        return this.mana_maxima;
+    }
+    public ArrayList<Mision> getListaMisiones(){
+        return this.lista_misiones;
+    }
+    public int getNivel(){
+        int[] limites_xp = {10,25,50,100,200,350,600,900};
+        for(int i = 0; i < limites_xp.length; i++){
+            if(this.xp < limites_xp[i])
+                return i + 1;
+        }
+        return 8;
     }
 }

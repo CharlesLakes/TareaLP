@@ -21,11 +21,17 @@ public class Mago extends Jugador{
         return resultado;
     }
 
-    public void subir_experiencia(){
+    public void subir_experiencia(int xp){
+        this.setXp(this.getXp() + xp);
+
         this.setVidaMaxima(this.getVidaMaxima() + 2*this.getNivel());
         this.setFuerza(this.getFuerza() + 1);
         this.setInteligencia(this.getInteligencia() + 3*this.getNivel());
         this.setEnergiaMaxima(this.getEnergiaMaxima() + 1);
         this.setManaMaxima(this.getManaMaxima() + 3*this.getNivel());
+
+        this.setVida(this.getVidaMaxima());
+        this.setEnergia(this.getEnergiaMaxima());
+        this.setMana(this.getManaMaxima());
     }
 }
