@@ -3,8 +3,8 @@ import thelegendofmorio.mision.*;
 import java.util.ArrayList;
 
 public class Druida extends Jugador{
-    public Druida(String nombre,ArrayList<Mision> listo_misiones){
-        super(nombre,15,0,5,5,5,5,listo_misiones);
+    public Druida(ArrayList<Mision> lista_misiones){
+        super(15,0,5,5,5,5,lista_misiones);
     }
 
     public int ataque(){

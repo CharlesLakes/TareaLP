@@ -3,8 +3,8 @@ import thelegendofmorio.mision.*;
 import java.util.ArrayList;
 
 public class Guerrero extends Jugador{
-    public Guerrero(String nombre,ArrayList<Mision> listo_misiones){
-        super(nombre,20,0,9,1,10,2,listo_misiones);
+    public Guerrero(ArrayList<Mision> listo_misiones){
+        super(20,0,9,1,10,2,listo_misiones);
     }
 
     public int ataque(){

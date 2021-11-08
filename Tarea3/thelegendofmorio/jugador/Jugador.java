@@ -2,6 +2,7 @@ package thelegendofmorio.jugador;
 
 import thelegendofmorio.mision.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public abstract class Jugador {
@@ -10,7 +11,11 @@ public abstract class Jugador {
     private int vida_maxima, energia_maxima, mana_maxima;
     private ArrayList<Mision> lista_misiones;
 
-    public Jugador(String nombre,int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> lista_misiones){
+    public Jugador(int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> lista_misiones){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Nombre: ");
+
+        this.nombre = input.next();
         this.vida = vida;
         this.xp = xp;
         this.fuerza = fuerza;
