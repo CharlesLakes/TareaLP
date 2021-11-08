@@ -1,5 +1,5 @@
 *.txt
 *.o
 *.pdf
-
+*.class
 !README.txt
