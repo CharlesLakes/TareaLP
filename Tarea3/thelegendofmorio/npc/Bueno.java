@@ -18,7 +18,7 @@ public class Bueno extends NPC{
             return;
         }
         if(this.atributo == "xp"){
-            j.setXp(j.getXp() + this.cantidad);
+            j.subir_experiencia(this.cantidad);
             return;
         }
         if(this.atributo == "energia"){
