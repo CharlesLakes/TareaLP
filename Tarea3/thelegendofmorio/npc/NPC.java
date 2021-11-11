@@ -11,6 +11,11 @@ public abstract class NPC {
     public abstract void interaccion(Jugador j);
 
 
+    //setters
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
     // getters    
     public String getNombre(){
         return this.nombre;

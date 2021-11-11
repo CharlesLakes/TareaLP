@@ -23,4 +23,20 @@ public class Malo extends NPC{
         else
             j.setMana(j.getMana() - this.cantidad_mana);
     }
+
+    //setters
+    public void setCantidadEnergia(int cantidad_energia){
+        this.cantidad_energia = cantidad_energia;
+    }
+    public void setCantidadMana(int cantidad_mana){
+        this.cantidad_mana = cantidad_mana;
+    }
+
+    //getters
+    public int getCantidadEnergia(){
+        return this.cantidad_energia;
+    }
+    public int getCantidadMana(){
+        return this.cantidad_mana;
+    }
 }

@@ -31,4 +31,20 @@ public class Bueno extends NPC{
         }
 
     }
+
+    //setters
+    public void setAtributo(String atributo){
+        this.atributo = atributo;
+    }
+    public void setCantidad(int cantidad){
+        this.cantidad = cantidad;
+    }
+
+    //getters
+    public String getAtributo(){
+        return this.atributo;
+    }
+    public int getCantidad(){
+        return this.cantidad;
+    }
 }

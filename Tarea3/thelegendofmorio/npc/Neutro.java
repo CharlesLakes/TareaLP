@@ -35,4 +35,33 @@ public class Neutro extends NPC{
 
         j.getListaMisiones().add(new Mision(this.requisito, this.valor, this.recompensa));
     }
+
+
+    //setters
+    public void setRequisito(char requisito){
+        this.requisito = requisito;
+    }
+    public void setValor(int valor){
+        this.valor = valor;
+    }
+    public void setRecompensa(int recompensa){
+        this.recompensa = recompensa;
+    }
+    public void setYaDioMision(int ya_dio_mision){
+        this.ya_dio_mision = ya_dio_mision;
+    }
+
+    //getters
+    public char getRequisito(){
+        return this.requisito;
+    }
+    public int getValor(){
+        return this.valor;
+    }
+    public int getRecompensa(){
+        return this.recompensa;
+    }
+    public int getYaDioMision(){
+        return this.ya_dio_mision;
+    }
 }
