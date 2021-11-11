@@ -22,7 +22,9 @@ public class Druida extends Jugador{
     }
 
     public void subir_experiencia(int xp){
+        int anterior_nivel = this.getNivel();
         this.setXp(this.getXp() + xp);
+        if(anterior_nivel == this.getNivel()) return;
 
         this.setVidaMaxima(this.getVidaMaxima() + this.getNivel());
         this.setFuerza(this.getFuerza() + this.getNivel());

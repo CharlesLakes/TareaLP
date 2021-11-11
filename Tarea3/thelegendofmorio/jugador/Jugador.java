@@ -15,14 +15,16 @@ public abstract class Jugador {
         Scanner input = new Scanner(System.in);
         System.out.print("Nombre: ");
 
-        this.nombre = input.next();
+        this.nombre = input.nextLine();
         this.vida = vida;
         this.xp = xp;
         this.fuerza = fuerza;
         this.inteligencia = inteligencia;
         this.energia = energia;
         this.mana = mana;
-        this.lista_misiones = lista_misiones;
+        this.lista_misiones = new ArrayList<Mision>();
+
+        input.close();
     }
 
     public abstract int ataque();

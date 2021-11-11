@@ -22,7 +22,9 @@ public class Guerrero extends Jugador{
     }
 
     public void subir_experiencia(int xp){
+        int anterior_nivel = this.getNivel();
         this.setXp(this.getXp() + xp);
+        if(anterior_nivel == this.getNivel()) return;
 
         this.setVidaMaxima(this.getVidaMaxima() + 3*this.getNivel());
         this.setFuerza(this.getFuerza() + 5*this.getNivel());
