@@ -2,8 +2,7 @@ package thelegendofmorio.jugador;
 
 import thelegendofmorio.mision.*;
 import java.util.ArrayList;
-import java.util.Scanner;
-import thelegendofmorio.utils.AuxScanner;
+
 
 public abstract class Jugador {
     private String nombre;

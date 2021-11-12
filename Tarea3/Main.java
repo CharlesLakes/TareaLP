@@ -228,8 +228,7 @@ public class Main {
             else
                 j.setPos((j.getPos() + 1) % mundo.length);
             
-            mundo[j.getPos()].accion(j);
-            flag = j.getVida() != 0;
+            flag = mundo[j.getPos()].accion(j);
 
             if(flag && mundo[j.getPos()].getTipoEnemigo() == "Jefe_Final"){
                 System.out.println("Mataste al jefe final.");

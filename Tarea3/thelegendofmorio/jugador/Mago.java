@@ -1,6 +1,4 @@
 package thelegendofmorio.jugador;
-import thelegendofmorio.mision.*;
-import java.util.ArrayList;
 
 public class Mago extends Jugador{
     public Mago(String nombre){

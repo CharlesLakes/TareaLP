@@ -1,6 +1,5 @@
 package thelegendofmorio.jugador;
-import thelegendofmorio.mision.*;
-import java.util.ArrayList;
+
 
 public class Druida extends Jugador{
     public Druida(String nombre){

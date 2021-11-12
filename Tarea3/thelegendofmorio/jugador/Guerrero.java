@@ -1,6 +1,5 @@
 package thelegendofmorio.jugador;
-import thelegendofmorio.mision.*;
-import java.util.ArrayList;
+
 
 public class Guerrero extends Jugador{
     public Guerrero(String nombre){

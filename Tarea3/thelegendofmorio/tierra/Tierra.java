@@ -1,7 +1,5 @@
 package thelegendofmorio.tierra;
 
-import javax.swing.text.html.HTMLDocument.BlockElement;
-
 import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 import thelegendofmorio.jugador.*;
