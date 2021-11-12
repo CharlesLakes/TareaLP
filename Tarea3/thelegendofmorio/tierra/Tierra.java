@@ -22,6 +22,7 @@ public abstract class Tierra {
             this.monstruo = monstruo;
         else if(tipo_enemigo.equals("Jefe_Final"))
             this.jefe_final = jefe_final;
+        this.tipo_enemigo = tipo_enemigo;
         this.npc = npc;
     }
 

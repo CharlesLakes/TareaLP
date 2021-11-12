@@ -18,7 +18,7 @@ public class Main {
 
             opt = AuxScanner.input.nextInt();
             if(opt < 1 || opt > 3)
-                System.out.println("Entrada invalidad.");
+                System.out.println("Entrada invalida.");
         }while(opt < 1 || opt > 3);
 
         return opt;
@@ -40,7 +40,7 @@ public class Main {
             opt = AuxScanner.input.nextInt();
             AuxScanner.input.nextLine();
             if(opt < 1 || opt > 2)
-                System.out.println("Entrada invalidad.");
+                System.out.println("Entrada invalida.");
         }while(opt < 1 || opt > 2);
 
         return opt;
@@ -80,7 +80,7 @@ public class Main {
             opt = AuxScanner.input.next();
             AuxScanner.input.nextLine();
             if(opt.equals("si") && opt.equals("no"))
-                System.out.println("Entrada invalidad.");
+                System.out.println("Entrada invalida.");
         }while(opt.equals("si") && opt.equals("no"));
         
         if(opt.equals("si"))
@@ -97,7 +97,7 @@ public class Main {
             opt = AuxScanner.input.nextInt();
             AuxScanner.input.nextLine();
             if(opt < 1 || opt > 3)
-                System.out.println("Entrada invalidad.");
+                System.out.println("Entrada invalida.");
         }while(opt < 1 || opt > 3);
 
         System.out.print("Nombre: ");
@@ -127,12 +127,15 @@ public class Main {
 
         System.out.print("Requisito: ");
         char requisito = AuxScanner.input.next().charAt(0);
+        AuxScanner.input.nextLine();
 
         System.out.print("Valor: ");
         int valor = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
         
         System.out.print("Recompensa: ");
         int recompensa = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
 
         return new Neutro(nombre, requisito, valor, recompensa);
 
@@ -149,8 +152,9 @@ public class Main {
             System.out.println("3.Mago");
             System.out.print("Que clase es (solo numero): ");
             opt = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
             if(opt < 1 || opt > 3)
-                System.out.println("Entrada invalidad.");
+                System.out.println("Entrada invalida.");
         }while(opt < 1 || opt > 3);
 
         if(opt == 1)
@@ -203,6 +207,56 @@ public class Main {
         }
     }
 
+    public static void menu(Jugador j,Tierra mundo[]){
+        boolean flag = true;
+        int opt;
+
+        while(flag){
+            do{
+                System.out.println("¿Donde quieres ir?");
+                System.out.println("1.Izquierda");
+                System.out.println("2.Derecha");
+                System.out.print("Direccion (solo numero): ");
+                opt = AuxScanner.input.nextInt();
+                AuxScanner.input.nextLine();
+                if(opt != 1 && opt != 2)
+                    System.out.println("Entrada invalida.");
+            }while(opt != 1 && opt != 2);
+
+            if(opt == 1)
+                j.setPos((j.getPos() - 1) % mundo.length);
+            else
+                j.setPos((j.getPos() + 1) % mundo.length);
+            
+            mundo[j.getPos()].accion(j);
+            flag = j.getVida() != 0;
+
+            if(flag && mundo[j.getPos()].getTipoEnemigo() == "Jefe_Final"){
+                System.out.println("Mataste al jefe final.");
+                flag = false;
+            }else if(flag){
+                for(int i = 0; i < j.getListaMisiones().size(); i++ ){
+                    char requisito = j.getListaMisiones().get(i).getRequisito();
+                    j.getListaMisiones().get(i).setCantidad(
+                        requisito == 'v' ? j.getPos(): j.getListaMisiones().get(i).getCantidad() + 1
+                    );
+                }
+                int p = 0;
+                while(p < j.getListaMisiones().size()){
+                    if(j.getListaMisiones().get(p).verificar_requisito()){
+                        j.subir_experiencia(j.getListaMisiones().get(p).getRecompensa());
+                        j.getListaMisiones().remove(p);
+                    }else
+                        p++;
+                }
+            }else{
+                System.out.println("Moriste.");
+            }
+
+            
+        }
+    }
+
     public static void main(String[] args) {
         System.out.print("Ingresa el tamaño de el mundo: ");
         int tamano_mundo = AuxScanner.input.nextInt();
@@ -212,8 +266,9 @@ public class Main {
         generarMundo(mundo);
 
         Jugador j = obtenerJugador();
-        j.setPos(pedirPosInicial() % tamano_mundo);
+        j.setPos(tamano_mundo != 0 ? pedirPosInicial() % tamano_mundo: 0);
 
+        menu(j, mundo);
 
         AuxScanner.input.close();
     }
