@@ -3,6 +3,7 @@ package thelegendofmorio.npc;
 import thelegendofmorio.jugador.*;
 import thelegendofmorio.mision.*;
 import java.util.Scanner;
+import thelegendofmorio.utils.AuxScanner;
 
 public class Neutro extends NPC{
     private char requisito;
@@ -24,7 +25,7 @@ public class Neutro extends NPC{
             + (this.getRequisito() == 'v' ? "llegar a" : "matar") + " " + String.valueOf(this.getValor())
             + " " + (this.getRequisito() == 'v' ? "del mundo" : "de monstruos") + " y recibirás " + String.valueOf(this.getRecompensa()) + " de xp");
 
-        Scanner input = new Scanner(System.in);
+        Scanner input = AuxScanner.input;
         
         System.out.print("Respuesta (si o no): ");
         if(input.next().equals("si")){

@@ -2,6 +2,7 @@ package thelegendofmorio.enemigo;
 
 import thelegendofmorio.jugador.*;
 import java.util.Scanner;
+import thelegendofmorio.utils.AuxScanner;
 
 public class Monstruo implements Enemigo{
     private int vida, dano;
@@ -12,7 +13,7 @@ public class Monstruo implements Enemigo{
     }
 
     public void combate(Jugador j){
-        Scanner input = new Scanner(System.in);
+        Scanner input = AuxScanner.input;
         boolean flag = true;
 
         while(flag){

@@ -2,6 +2,7 @@ package thelegendofmorio.enemigo;
 
 import thelegendofmorio.jugador.*;
 import java.util.Scanner;
+import thelegendofmorio.utils.AuxScanner;
 
 public abstract class Jefe_Final {
     private String nombre;
@@ -15,7 +16,7 @@ public abstract class Jefe_Final {
     }
 
     public void combate(Jugador j){
-        Scanner input = new Scanner(System.in);
+        Scanner input = AuxScanner.input;
         boolean flag = true;
         int fase_actual = (float) this.getVidaInicial() / 2 < this.getVida() ? 2 : 1;
 
