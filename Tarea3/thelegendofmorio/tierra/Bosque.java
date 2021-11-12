@@ -48,6 +48,7 @@ public class Bosque extends Tierra{
         if(this.getProbabilidadEnemigo() < Math.random())
             return true;
 
+        System.out.println("Te encontraste con un " + this.getTipoEnemigo());
 
         if(this.getTipoEnemigo().equals("Monstruo"))
             this.getMonstruo().combate(j);
