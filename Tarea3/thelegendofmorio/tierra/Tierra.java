@@ -1,5 +1,7 @@
 package thelegendofmorio.tierra;
 
+import javax.swing.text.html.HTMLDocument.BlockElement;
+
 import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 import thelegendofmorio.jugador.*;
@@ -23,6 +25,9 @@ public abstract class Tierra {
         this.npc = npc;
     }
 
+    public boolean existeNPC(){
+        return !npc.getNombre().equals("");
+    }
     
     //setters
     public void setProbabilidadEnemigo(float probabilidad_enemigo){

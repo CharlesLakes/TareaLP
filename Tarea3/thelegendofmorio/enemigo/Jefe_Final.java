@@ -4,7 +4,7 @@ import thelegendofmorio.jugador.*;
 import java.util.Scanner;
 import thelegendofmorio.utils.AuxScanner;
 
-public abstract class Jefe_Final {
+public class Jefe_Final implements Enemigo {
     private String nombre;
     private int vida, dano_base, vida_inicial;
 

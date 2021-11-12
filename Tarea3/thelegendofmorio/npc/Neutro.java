@@ -9,8 +9,9 @@ public class Neutro extends NPC{
     private char requisito;
     private int valor, recompensa, ya_dio_mision;
 
-    public Neutro(String nombre, int valor, int recompensa){
+    public Neutro(String nombre, char requisito, int valor, int recompensa){
         super(nombre);
+        this.requisito = requisito;
         this.valor = valor;
         this.recompensa = recompensa;
         this.ya_dio_mision = 0;
