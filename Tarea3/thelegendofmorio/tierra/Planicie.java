@@ -5,12 +5,13 @@ import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 
 public class Planicie extends Tierra{
-    public Planicie(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
-        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+    public Planicie(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo,boolean existeNPC){
+        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
     }
 
     public boolean accion(Jugador j){        
-        this.getNpc().interaccion(j);
+        if(this.getExisteNPC())
+            this.getNpc().interaccion(j);
 
         if(this.getProbabilidadEnemigo() < Math.random())
             return true;

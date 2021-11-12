@@ -191,17 +191,19 @@ public class Main {
                 monstruo = new Monstruo(0, 0);
             }
 
-            if(preguntarNPC())
+            boolean existeNPC = preguntarNPC();
+
+            if(existeNPC)
                 npc = obtenerNPC();
             else
                 npc = new Bueno("", "", 0);
 
             if(tipo_tierra == 1)
-                mundo[i] = new Montana(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+                mundo[i] = new Montana(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
             else if(tipo_tierra == 2)
-                mundo[i] = new Planicie(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+                mundo[i] = new Planicie(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
             else   
-                mundo[i] = new Bosque(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+                mundo[i] = new Bosque(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
             
             System.out.println();
         }

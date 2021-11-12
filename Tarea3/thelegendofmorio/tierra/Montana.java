@@ -5,8 +5,8 @@ import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 
 public class Montana extends Tierra{
-    public Montana(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
-        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+    public Montana(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo,boolean existeNPC){
+        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
     }
 
     public boolean accion(Jugador j){
@@ -22,8 +22,9 @@ public class Montana extends Tierra{
         
         if(j.getVida() == 0)
             return false;
-        
-        this.getNpc().interaccion(j);
+            
+        if(this.getExisteNPC())
+            this.getNpc().interaccion(j);
 
         if(this.getProbabilidadEnemigo() < Math.random())
             return true;
