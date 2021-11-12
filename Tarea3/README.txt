@@ -19,4 +19,4 @@ Si deseas eliminar los .class lo puedes hacer con:
 Mas infromacion:
 Se creo el el subpaquete thelegendofmorio/utils.
 Para crear un AuxScanner estatico, esto para poder usar de forma mas
-comoda el Scanner y no tener bugs al usar .close()
+comoda el Scanner y no tener erores al instanciar muchos Scanners.
