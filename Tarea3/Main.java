@@ -2,7 +2,7 @@ import thelegendofmorio.jugador.*;
 import thelegendofmorio.utils.AuxScanner;
 import thelegendofmorio.tierra.*;
 
-import javax.lang.model.type.NullType;
+
 
 import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
@@ -26,7 +26,9 @@ public class Main {
 
     public static double probabilidadEnemigo(){
         System.out.print("Probabilidad de que un enemigo aparezca: ");
-        return AuxScanner.input.nextDouble();
+        double r =  AuxScanner.input.nextDouble();
+        AuxScanner.input.nextLine();
+        return r;
     }
 
     public static int tipoDeEnemigo(){
@@ -36,6 +38,7 @@ public class Main {
             System.out.print("Que tipo de Monstruo es (solo numero): ");
 
             opt = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
             if(opt < 1 || opt > 2)
                 System.out.println("Entrada invalidad.");
         }while(opt < 1 || opt > 2);
@@ -46,9 +49,11 @@ public class Main {
     public static Monstruo atributosMonstruo(){
         System.out.print("Vida: ");
         int vida = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
 
         System.out.print("Daño: ");
         int dano = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
 
         return new Monstruo(vida, dano);
     }
@@ -59,9 +64,11 @@ public class Main {
 
         System.out.print("Vida: ");
         int vida = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
 
         System.out.print("Daño Base: ");
         int dano_base = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
 
         return new Jefe_Final(nombre,vida,dano_base);
     }
@@ -71,6 +78,7 @@ public class Main {
         do{
             System.out.print("Hay un npc (si o no): ");
             opt = AuxScanner.input.next();
+            AuxScanner.input.nextLine();
             if(opt.equals("si") && opt.equals("no"))
                 System.out.println("Entrada invalidad.");
         }while(opt.equals("si") && opt.equals("no"));
@@ -87,6 +95,7 @@ public class Main {
             System.out.print("Que tipo de NPC es (solo numero): ");
 
             opt = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
             if(opt < 1 || opt > 3)
                 System.out.println("Entrada invalidad.");
         }while(opt < 1 || opt > 3);
@@ -100,15 +109,18 @@ public class Main {
 
             System.out.print("Cantidad: ");
             int cantidad = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
 
             return new Bueno(nombre,atributo,cantidad);
         }
         if(opt == 2){
             System.out.print("Cantidad energia: ");
             int cantidad_energia = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
 
             System.out.print("Cantidad mana: ");
             int cantidad_mana = AuxScanner.input.nextInt();
+            AuxScanner.input.nextLine();
 
             return new Malo(nombre, cantidad_energia, cantidad_mana);
         }
@@ -126,12 +138,38 @@ public class Main {
 
     }
 
-    public static void main(String[] args) {
-        System.out.print("Ingresa el tamaño de el mundo: ");
-        int tamano_mundo = AuxScanner.input.nextInt();
-        
-        Tierra mundo[] = new Tierra[tamano_mundo];
+    public static Jugador obtenerJugador(){
+        System.out.print("Nombre de el jugador: ");
+        String nombre = AuxScanner.input.nextLine();
+        int opt;
+        do{
+            System.out.println("¿De que clase eres?");
+            System.out.println("1.Druida");
+            System.out.println("2.Guerrero");
+            System.out.println("3.Mago");
+            System.out.print("Que clase es (solo numero): ");
+            opt = AuxScanner.input.nextInt();
+            if(opt < 1 || opt > 3)
+                System.out.println("Entrada invalidad.");
+        }while(opt < 1 || opt > 3);
+
+        if(opt == 1)
+            return new Druida(nombre);
+
+        if(opt == 2)
+            return new Guerrero(nombre);
+        return new Mago(nombre);
+
+    }
+
+    public static int pedirPosInicial(){
+        System.out.print("Ingresa la posición inicial: ");
+        return AuxScanner.input.nextInt();
+    }
+
+    public static void generarMundo(Tierra mundo[]){
         for(int i = 0; i < mundo.length; i++){
+            System.out.println("Posicion: "+String.valueOf(i + 1));
             int tipo_tierra = tipoDeTierra();
             float probabilidad_enemigo = (float) probabilidadEnemigo();
             String tipo_enemigo;
@@ -160,7 +198,21 @@ public class Main {
                 mundo[i] = new Planicie(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
             else   
                 mundo[i] = new Bosque(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
+            
+            System.out.println();
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.print("Ingresa el tamaño de el mundo: ");
+        int tamano_mundo = AuxScanner.input.nextInt();
+        AuxScanner.input.nextLine();
+        
+        Tierra mundo[] = new Tierra[tamano_mundo];
+        generarMundo(mundo);
+
+        Jugador j = obtenerJugador();
+        j.setPos(pedirPosInicial() % tamano_mundo);
 
 
         AuxScanner.input.close();

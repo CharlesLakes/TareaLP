@@ -11,11 +11,8 @@ public abstract class Jugador {
     private int vida_maxima, energia_maxima, mana_maxima, pos;
     private ArrayList<Mision> lista_misiones;
 
-    public Jugador(int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> lista_misiones){
-        Scanner input = AuxScanner.input;
-        System.out.print("Nombre: ");
-
-        this.nombre = input.nextLine();
+    public Jugador(String nombre,int vida,int xp,int fuerza,int inteligencia,int energia,int mana){
+        this.nombre = nombre;
         this.vida = vida;
         this.xp = xp;
         this.fuerza = fuerza;

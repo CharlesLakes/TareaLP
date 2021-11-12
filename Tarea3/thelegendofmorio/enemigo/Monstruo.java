@@ -24,6 +24,7 @@ public class Monstruo implements Enemigo{
 
             do{
                 opt = input.nextInt();
+                input.nextLine();
                 if(opt != 1 && opt != 2)
                     System.out.println("Opcion erronea.");
             }while(opt != 1 && opt != 2);

@@ -3,8 +3,8 @@ import thelegendofmorio.mision.*;
 import java.util.ArrayList;
 
 public class Mago extends Jugador{
-    public Mago(ArrayList<Mision> listo_misiones){
-        super(10,0,3,10,6,15,listo_misiones);
+    public Mago(String nombre){
+        super(nombre,10,0,3,10,6,15);
     }
 
     public int ataque(){

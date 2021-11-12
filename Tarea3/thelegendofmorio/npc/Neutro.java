@@ -27,6 +27,7 @@ public class Neutro extends NPC{
             + " " + (this.getRequisito() == 'v' ? "del mundo" : "de monstruos") + " y recibirás " + String.valueOf(this.getRecompensa()) + " de xp");
 
         Scanner input = AuxScanner.input;
+        input.nextLine();
         
         System.out.print("Respuesta (si o no): ");
         if(input.next().equals("si")){
