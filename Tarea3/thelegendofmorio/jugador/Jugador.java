@@ -24,7 +24,6 @@ public abstract class Jugador {
         this.mana = mana;
         this.lista_misiones = new ArrayList<Mision>();
 
-        input.close();
     }
 
     public abstract int ataque();

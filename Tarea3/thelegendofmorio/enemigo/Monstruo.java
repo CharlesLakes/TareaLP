@@ -37,7 +37,6 @@ public class Monstruo implements Enemigo{
 
             flag = j.getVida() > 0 && this.getVida() > 0;
         }
-        input.close();
     }
 
 
