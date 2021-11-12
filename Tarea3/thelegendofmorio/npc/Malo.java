@@ -13,15 +13,15 @@ public class Malo extends NPC{
     }
 
     public void interaccion(Jugador j){
-        if(j.getEnergia() - this.cantidad_energia < 0)
+        if(j.getEnergia() - this.getCantidadEnergia() < 0)
             j.setEnergia(0);
         else
-            j.setEnergia(j.getEnergia() - this.cantidad_energia);
+            j.setEnergia(j.getEnergia() - this.getCantidadEnergia());
         
-        if(j.getMana() - this.cantidad_mana < 0)
+        if(j.getMana() - this.getCantidadMana() < 0)
             j.setMana(0);
         else
-            j.setMana(j.getMana() - this.cantidad_mana);
+            j.setMana(j.getMana() - this.getCantidadMana());
     }
 
     //setters

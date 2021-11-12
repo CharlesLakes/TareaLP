@@ -12,21 +12,21 @@ public class Bueno extends NPC{
     }
 
     public void interaccion(Jugador j){
-        System.out.println(this.getNombre() + ": Creo que necesitas un poco de ayuda te subire " + String.valueOf(this.cantidad) + " a tu " + this.atributo + "!!!!");
-        if(this.atributo == "vida"){
-            j.setVida((j.getVida() + this.cantidad <= j.getVidaMaxima())? j.getVida() + this.cantidad : j.getVidaMaxima());
+        System.out.println(this.getNombre() + ": Creo que necesitas un poco de ayuda te subire " + String.valueOf(this.getCantidad()) + " a tu " + this.getAtributo() + "!!!!");
+        if(this.getAtributo() == "vida"){
+            j.setVida((j.getVida() + this.getCantidad() <= j.getVidaMaxima())? j.getVida() + this.getCantidad() : j.getVidaMaxima());
             return;
         }
-        if(this.atributo == "xp"){
-            j.subir_experiencia(this.cantidad);
+        if(this.getAtributo() == "xp"){
+            j.subir_experiencia(this.getCantidad());
             return;
         }
-        if(this.atributo == "energia"){
-            j.setEnergia((j.getEnergia() + this.cantidad <= j.getEnergiaMaxima())? j.getEnergia() + this.cantidad : j.getEnergiaMaxima());
+        if(this.getAtributo() == "energia"){
+            j.setEnergia((j.getEnergia() + this.getCantidad() <= j.getEnergiaMaxima())? j.getEnergia() + this.getCantidad() : j.getEnergiaMaxima());
             return;
         }
-        if(this.atributo == "mana"){
-            j.setMana((j.getMana() + this.cantidad <= j.getManaMaxima())? j.getMana() + this.cantidad : j.getManaMaxima());
+        if(this.getAtributo() == "mana"){
+            j.setMana((j.getMana() + this.getCantidad() <= j.getManaMaxima())? j.getMana() + this.getCantidad() : j.getManaMaxima());
             return;
         }
 

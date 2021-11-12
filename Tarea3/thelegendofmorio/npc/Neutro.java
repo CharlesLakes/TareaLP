@@ -16,24 +16,21 @@ public class Neutro extends NPC{
     }
 
     public void interaccion(Jugador j){
-        if(this.ya_dio_mision == 1){
+        if(this.getYaDioMision() == 1){
             System.out.println(this.getNombre() + ": ya te di mision, saludos.");
             return;
         }
         System.out.println(this.getNombre() + ": hola, ¿quieres cumplir esta mision? Deberas "
-            + (this.requisito == 'v' ? "llegar a" : "matar") + " " + String.valueOf(this.valor)
-            + " " + (this.requisito == 'v' ? "del mundo" : "de monstruos") + " y recibirás " + this.recompensa + " de xp");
+            + (this.getRequisito() == 'v' ? "llegar a" : "matar") + " " + String.valueOf(this.getValor())
+            + " " + (this.getRequisito() == 'v' ? "del mundo" : "de monstruos") + " y recibirás " + String.valueOf(this.getRecompensa()) + " de xp");
 
         Scanner input = new Scanner(System.in);
         
         System.out.print("Respuesta (si o no): ");
-        if(input.next().equals("no")){
-            input.close();
-            return;
+        if(input.next().equals("si")){
+            j.getListaMisiones().add(new Mision(this.getRequisito(), this.getValor(), this.getRecompensa()));
         }
         input.close();
-
-        j.getListaMisiones().add(new Mision(this.requisito, this.valor, this.recompensa));
     }
 
 
