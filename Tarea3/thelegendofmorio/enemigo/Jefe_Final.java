@@ -43,7 +43,6 @@ public abstract class Jefe_Final {
             flag = j.getVida() > 0 && this.getVida() > 0;
             fase_actual = (float) this.getVidaInicial() / 2 < this.getVida() ? 2 : 1;
         }
-        input.close();
     }
 
     //setters
