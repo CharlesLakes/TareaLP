@@ -8,6 +8,14 @@ public class Jefe_Final implements Enemigo {
     private String nombre;
     private int vida, dano_base, vida_inicial;
 
+    /**
+    * Es el constructor de la clase jefe final, la cual es llamada al ser intanciado
+    * el objeto.
+    *
+    * @param nombre Es un string que contiene el nombre de el jefe final.
+    * @param vida Es la vida por defecto de el jefe final. 
+    * @param dano_base Es el dano_base de el jefe final, independiente de su fase.
+    */
     public Jefe_Final(String nombre, int vida, int dano_base){
         this.nombre = nombre;
         this.vida = vida;
@@ -15,6 +23,14 @@ public class Jefe_Final implements Enemigo {
         this.dano_base = dano_base;
     }
 
+    
+    /** 
+     * Hace que el jefe final combata con un jugador entregado
+     * como parametro en un duelo por turnos.
+     * La funcion se acaba cuando el Jugador o el jefe final muere
+     * 
+     * @param j Objeto Jugador
+     */
     public void combate(Jugador j){
         Scanner input = AuxScanner.input;
         boolean flag = true;
@@ -48,29 +64,75 @@ public class Jefe_Final implements Enemigo {
     }
 
     //setters
+    /** 
+     * Le asigna un valor a nombre.
+     * 
+     * @param nombre String con el nombre.
+     */
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
+    
+    /** 
+     * Le asigna un valor a la vida.
+     * 
+     * @param vida int con la vida.
+     */
     public void setVida(int vida){
         this.vida = vida;
     }
+    
+    /** 
+     * Le asigna un valor al dano_base.
+     * 
+     * @param dano_base int con el dano base.
+     */
     public void setDanoBase(int dano_base){
         this.dano_base = dano_base;
     }
+    
+    /** 
+     * Le asigna un valor a la vida_inicial.
+     * 
+     * @param vida_inicial int con la vida inicial.
+     */
     public void setVidaInicial(int vida_inicial){
         this.vida_inicial = vida_inicial;
     }
 
     //getters
+    /** 
+     * Devuelve el valor de el nombre.
+     * 
+     * @return String nombre.
+     */
     public String getNombre(){
         return this.nombre;
     }
+    
+    /** 
+     * Devuelve el valor de la vida.
+     * 
+     * @return int vida.
+     */
     public int getVida(){
         return this.vida;
     }
+    
+    /** 
+     * Devuelve el valor de el dano base.
+     * 
+     * @return int dano_base.
+     */
     public int getDanoBase(){
         return this.dano_base;
     }
+    
+    /** 
+     * Devuelve el valor de la vida inicial.
+     * 
+     * @return int vida_inicial.
+     */
     public int getVidaInicial(){
         return this.vida_inicial;
     }

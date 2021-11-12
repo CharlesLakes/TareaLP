@@ -9,6 +9,11 @@ public class Montana extends Tierra{
         super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
     }
 
+    
+    /** 
+     * @param j
+     * @return boolean
+     */
     public boolean accion(Jugador j){
         if(j.getEnergia() == 0)
             return false;
@@ -22,7 +27,7 @@ public class Montana extends Tierra{
         
         if(j.getVida() == 0)
             return false;
-            
+
         if(this.getExisteNPC())
             this.getNpc().interaccion(j);
 

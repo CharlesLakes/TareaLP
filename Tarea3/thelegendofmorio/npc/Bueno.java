@@ -11,6 +11,13 @@ public class Bueno extends NPC{
         this.cantidad = cantidad;
     }
 
+    
+    /** 
+     * Hace que el NPC bueno le mejore un atrubuto al jugador 
+     * al interaccionar con el.
+     * 
+     * @param j Objeto jugador.
+     */
     public void interaccion(Jugador j){
         System.out.println(this.getNombre() + ": Creo que necesitas un poco de ayuda te subire " + String.valueOf(this.getCantidad()) + " a tu " + this.getAtributo() + "!!!!");
         if(this.getAtributo().equals("vida")){
@@ -33,17 +40,39 @@ public class Bueno extends NPC{
     }
 
     //setters
+    /** 
+     * Le asigna un valor a atributo.
+     * 
+     * @param atributo String con al atributo.
+     */
     public void setAtributo(String atributo){
         this.atributo = atributo;
     }
+    
+    /** 
+     * Le asigna un valor a cantidad.
+     * 
+     * @param cantidad int con la cantidad.
+     */
     public void setCantidad(int cantidad){
         this.cantidad = cantidad;
     }
 
     //getters
+    /** 
+     * Devielve el valor de el atributo.
+     * 
+     * @return int atributo.
+     */
     public String getAtributo(){
         return this.atributo;
     }
+    
+    /** 
+     * Devielve el valor de la cantidad.
+     * 
+     * @return int cantidad.
+     */
     public int getCantidad(){
         return this.cantidad;
     }

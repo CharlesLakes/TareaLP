@@ -5,6 +5,13 @@ public class Mago extends Jugador{
         super(nombre,10,0,3,10,6,15);
     }
 
+    
+    /** 
+     * Devuelve el ataque que ejerce el mago
+     * La que depende de la energia, fuerza e inteligencia.
+     * 
+     * @return int ataque que ejerce el mago.
+     */
     public int ataque(){
         if(this.getEnergia() == 0) return 0;
         int resultado = this.getFuerza()*this.getInteligencia()/4 + this.getEnergia();
@@ -12,6 +19,13 @@ public class Mago extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Devuelve el ataque que ejerce el mago
+     * La que depende de la mana, fuerza e inteligencia.
+     * 
+     * @return int ataque que ejerce el mago.
+     */
     public int hechizo(){
         if(this.getMana() == 0) return 0;
         int resultado = this.getInteligencia()*this.getFuerza()/4 + this.getMana();
@@ -19,6 +33,13 @@ public class Mago extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Sube la experiencia de el jugador y si sube de nivel
+     * sube los atributos correspondientes
+     * 
+     * @param xp int de la experencia que se le da al jugador.
+     */
     public void subir_experiencia(int xp){
         int anterior_nivel = this.getNivel();
         this.setXp(this.getXp() + xp);

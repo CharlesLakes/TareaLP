@@ -12,6 +12,13 @@ public class Malo extends NPC{
         this.cantidad_mana = cantidad_mana;
     }
 
+    
+    /** 
+     * Hace que el NPC bueno le mejore un atrubuto al jugador 
+     * al interaccionar con el.
+     * 
+     * @param j Objeto jugador.
+     */
     public void interaccion(Jugador j){
         System.out.println(this.getNombre() + ": SOY MALO TE VOY A DISMINUIR TU ENERGIA y MANA EN" + this.getCantidadEnergia() + " y " + this.getCantidadMana());
 
@@ -33,17 +40,39 @@ public class Malo extends NPC{
     }
 
     //setters
+    /** 
+     * Le asigna un valor a cantidad_energia.
+     * 
+     * @param cantidad_energia int con la cantidad_energia.
+     */
     public void setCantidadEnergia(int cantidad_energia){
         this.cantidad_energia = cantidad_energia;
     }
+    
+    /** 
+     * Le asigna un valor a cantidad_mana.
+     * 
+     * @param cantidad_mana int con la cantidad_mana.
+     */
     public void setCantidadMana(int cantidad_mana){
         this.cantidad_mana = cantidad_mana;
     }
 
     //getters
+    /** 
+     * Devielve el valor de la cantidad_energia.
+     * 
+     * @return int cantidad_energia.
+     */
     public int getCantidadEnergia(){
         return this.cantidad_energia;
     }
+    
+    /** 
+     * Devielve el valor de la cantidad_mana.
+     * 
+     * @return int cantidad_mana.
+     */
     public int getCantidadMana(){
         return this.cantidad_mana;
     }

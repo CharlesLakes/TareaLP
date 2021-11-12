@@ -9,6 +9,11 @@ public class Bosque extends Tierra{
         super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
     }
 
+    
+    /** 
+     * @param j
+     * @return boolean
+     */
     public boolean accion(Jugador j){
         if(j.getMana() == 0)
             return false;

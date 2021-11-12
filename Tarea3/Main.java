@@ -10,6 +10,10 @@ import thelegendofmorio.npc.*;
 public class Main {
     
 
+    
+    /** 
+     * @return int
+     */
     public static int tipoDeTierra(){
         int opt;
         do{
@@ -24,6 +28,10 @@ public class Main {
         return opt;
     }
 
+    
+    /** 
+     * @return double
+     */
     public static double probabilidadEnemigo(){
         System.out.print("Probabilidad de que un enemigo aparezca: ");
         double r =  AuxScanner.input.nextDouble();
@@ -31,6 +39,10 @@ public class Main {
         return r;
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int tipoDeEnemigo(){
         int opt;
         do{
@@ -46,6 +58,10 @@ public class Main {
         return opt;
     }
 
+    
+    /** 
+     * @return Monstruo
+     */
     public static Monstruo atributosMonstruo(){
         System.out.print("Vida: ");
         int vida = AuxScanner.input.nextInt();
@@ -58,6 +74,10 @@ public class Main {
         return new Monstruo(vida, dano);
     }
 
+    
+    /** 
+     * @return Jefe_Final
+     */
     public static Jefe_Final atributosJefeFinal(){
         System.out.print("Nombre: ");
         String nombre = AuxScanner.input.nextLine();
@@ -73,6 +93,10 @@ public class Main {
         return new Jefe_Final(nombre,vida,dano_base);
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public static boolean preguntarNPC(){
         String opt;
         do{
@@ -88,6 +112,10 @@ public class Main {
         return false;
     }
 
+    
+    /** 
+     * @return NPC
+     */
     public static NPC obtenerNPC(){
         int opt;
         do{
@@ -141,6 +169,10 @@ public class Main {
 
     }
 
+    
+    /** 
+     * @return Jugador
+     */
     public static Jugador obtenerJugador(){
         System.out.print("Nombre de el jugador: ");
         String nombre = AuxScanner.input.nextLine();
@@ -166,11 +198,19 @@ public class Main {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int pedirPosInicial(){
         System.out.print("Ingresa la posición inicial: ");
         return AuxScanner.input.nextInt();
     }
 
+    
+    /** 
+     * @param mundo[]
+     */
     public static void generarMundo(Tierra mundo[]){
         for(int i = 0; i < mundo.length; i++){
             System.out.println("Posicion: "+String.valueOf(i + 1));
@@ -209,6 +249,11 @@ public class Main {
         }
     }
 
+    
+    /** 
+     * @param j
+     * @param mundo[]
+     */
     public static void menu(Jugador j,Tierra mundo[]){
         boolean flag = true;
         int opt;
@@ -258,6 +303,10 @@ public class Main {
         }
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.print("Ingresa el tamaño de el mundo: ");
         int tamano_mundo = AuxScanner.input.nextInt();

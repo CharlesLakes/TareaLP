@@ -6,6 +6,13 @@ public class Guerrero extends Jugador{
         super(nombre,20,0,9,1,10,2);
     }
 
+    
+    /** 
+     * Devuelve el ataque que ejerce el guerrero
+     * La que depende de la fuerza y energia.
+     * 
+     * @return int ataque que ejerce el guerrero.
+     */
     public int ataque(){
         if(this.getEnergia() == 0) return 0;
         int resultado = this.getFuerza()*2 + this.getEnergia();
@@ -13,6 +20,13 @@ public class Guerrero extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Devuelve el hechizo que ejerce el guerrero
+     * La que depende de la manda, inteligencia, fuerza y mana.
+     * 
+     * @return int hechizo que ejerce el guerrero.
+     */
     public int hechizo(){
         if(this.getMana() == 0) return 0;
         int resultado = this.getInteligencia()*this.getFuerza()/4 + this.getMana();
@@ -20,6 +34,13 @@ public class Guerrero extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Sube la experiencia de el jugador y si sube de nivel
+     * sube los atributos correspondientes
+     * 
+     * @param xp int de la experencia que se le da al jugador.
+     */
     public void subir_experiencia(int xp){
         int anterior_nivel = this.getNivel();
         this.setXp(this.getXp() + xp);

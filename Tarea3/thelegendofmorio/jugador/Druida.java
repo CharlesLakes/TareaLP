@@ -6,6 +6,14 @@ public class Druida extends Jugador{
         super(nombre,15,0,5,5,5,5);
     }
 
+    
+    
+    /** 
+     * Devuelve el ataque que ejerce la Druida
+     * La que depende de la fuerza, inteligencia, energia y mana.
+     * 
+     * @return int ataque que ejerce la druida.
+     */
     public int ataque(){
         if(this.getEnergia() == 0) return 0;
         int resultado = (this.getFuerza() + this.getInteligencia())*Math.max(this.getEnergia()/3,this.getMana()/2)/3;
@@ -13,6 +21,13 @@ public class Druida extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Devuelve el hechizo que ejerce la Druida
+     * Lo que depende de el mana, fuerza, inteligencia y energia.
+     * 
+     * @return int hechizo que ejerce la druida.
+     */
     public int hechizo(){
         if(this.getMana() == 0) return 0;
         int resultado = (this.getFuerza() + this.getInteligencia())*Math.max(this.getEnergia()/2,this.getMana()/3)/3;
@@ -20,6 +35,13 @@ public class Druida extends Jugador{
         return resultado;
     }
 
+    
+    /** 
+     * Sube la experiencia de el jugador y si sube de nivel
+     * sube los atributos correspondientes
+     * 
+     * @param xp int de la experencia que se le da al jugador.
+     */
     public void subir_experiencia(int xp){
         int anterior_nivel = this.getNivel();
         this.setXp(this.getXp() + xp);

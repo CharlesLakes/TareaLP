@@ -9,6 +9,11 @@ public class Planicie extends Tierra{
         super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
     }
 
+    
+    /** 
+     * @param j
+     * @return boolean
+     */
     public boolean accion(Jugador j){        
         if(this.getExisteNPC())
             this.getNpc().interaccion(j);
