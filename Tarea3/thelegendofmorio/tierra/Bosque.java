@@ -4,21 +4,21 @@ import thelegendofmorio.jugador.*;
 import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 
-public class Montana extends Tierra{
-    public Montana(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
+public class Bosque extends Tierra{
+    public Bosque(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
         super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
     }
 
     public boolean accion(Jugador j){
-        if(j.getEnergia() == 0)
+        if(j.getMana() == 0)
             return false;
 
-        int energia = j.getEnergia() - 3;
-        if(energia < 0){
-            j.setVida(j.getVida() - energia > 0 ? j.getVida() - energia : 0);
-            j.setEnergia(0);
+        int mana = j.getMana() - 3;
+        if(mana < 0){
+            j.setVida(j.getVida() - mana > 0 ? j.getVida() - mana : 0);
+            j.setMana(0);
         }else
-            j.setEnergia(energia);
+            j.setMana(mana);
         
         if(j.getVida() == 0)
             return false;

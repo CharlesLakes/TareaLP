@@ -9,14 +9,17 @@ public abstract class Tierra {
     private Monstruo monstruo;
     private Jefe_Final jefe_final;
     private NPC npc;
+    private String tipo_enemigo;
 
     public abstract boolean accion(Jugador j);
 
 
-    public Tierra(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc){
+    public Tierra(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
         this.probabilidad_enemigo = probabilidad_enemigo;
-        this.monstruo = monstruo;
-        this.jefe_final = jefe_final;
+        if(tipo_enemigo.equals("Monstruo"))
+            this.monstruo = monstruo;
+        else if(tipo_enemigo.equals("Jefe_Final"))
+            this.jefe_final = jefe_final;
         this.npc = npc;
     }
 
@@ -34,6 +37,9 @@ public abstract class Tierra {
     public void setNpc(NPC npc){
         this.npc = npc;
     }
+    public void setTipoEnemigo(String tipo_enemigo){
+        this.tipo_enemigo = tipo_enemigo;
+    }
       
     //getters
     public float getProbabilidadEnemigo(){
@@ -46,8 +52,10 @@ public abstract class Tierra {
         return this.jefe_final;
     }
     public NPC getNpc(){
-        return this.npc;
-      
+        return this.npc;  
+    }
+    public String getTipoEnemigo(){
+        return this.tipo_enemigo;
     }
 
 }
