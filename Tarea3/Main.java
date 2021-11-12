@@ -11,8 +11,13 @@ public class Main {
     
 
     
-    /** 
-     * @return int
+    /** tipoDeTierra
+     * Le pide al usuario el tipo de tierra al usuario.
+     * 1. Montana
+     * 2. Planicie
+     * 3. Bosque
+     * 
+     * @return int indice de la tierra elegida
      */
     public static int tipoDeTierra(){
         int opt;
@@ -29,8 +34,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return double
+    /** probabilidadEnemigo
+     * Le pide al usuario la probabilidad de que aprezca un enemio.
+     * 
+     * @return double la probabilidad entre [0,1]
      */
     public static double probabilidadEnemigo(){
         System.out.print("Probabilidad de que un enemigo aparezca: ");
@@ -40,8 +47,12 @@ public class Main {
     }
 
     
-    /** 
-     * @return int
+    /** tipoDeEnemigo(
+     * Le pide al usario el tipo de enemigo.
+     * 1. Monstruo
+     * 2. Jefe Final
+     * 
+     * @return int es el indice de lo elegido por el jugador
      */
     public static int tipoDeEnemigo(){
         int opt;
@@ -59,8 +70,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return Monstruo
+    /** atributosMonstruo
+     * Pide los atributos de el monstruo.
+     * 
+     * @return Monstruo Objeto Monstruo con los datos ingresados por el usuario
      */
     public static Monstruo atributosMonstruo(){
         System.out.print("Vida: ");
@@ -75,8 +88,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return Jefe_Final
+    /** atributosJefeFinal
+     * Pide los atrubutos de el Jefe Final
+     * 
+     * @return Jefe_Final Objeto Jefe:final con los datos ingresador por el usuario
      */
     public static Jefe_Final atributosJefeFinal(){
         System.out.print("Nombre: ");
@@ -94,8 +109,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return boolean
+    /** preguntarNPC
+     * Le pregunta al usuario si existe un NPC.
+     * 
+     * @return boolean true si existe y false si no existe
      */
     public static boolean preguntarNPC(){
         String opt;
@@ -113,8 +130,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return NPC
+    /** obtenerNPC
+     * Le pide al usuario que tipo de NPC es y os atributos correspondientes.
+     * 
+     * @return NPC Objetno NPC con los datos ingresados por el usuario.
      */
     public static NPC obtenerNPC(){
         int opt;
@@ -128,6 +147,7 @@ public class Main {
                 System.out.println("Entrada invalida.");
         }while(opt < 1 || opt > 3);
 
+        System.out.println("Si le asignas un nombre vacio el npc no existira.");
         System.out.print("Nombre: ");
         String nombre = AuxScanner.input.nextLine();
 
@@ -170,8 +190,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return Jugador
+    /** obtenerJugador
+     * Le pide al usuario los datos de el jugador
+     * 
+     * @return Jugador Objeto jugador con los datos ingresados por el usuario.
      */
     public static Jugador obtenerJugador(){
         System.out.print("Nombre de el jugador: ");
@@ -199,8 +221,10 @@ public class Main {
     }
 
     
-    /** 
-     * @return int
+    /** pedirPosInicial
+     * Le pide al usuario la posicion inicial de el jugador.
+     * 
+     * @return int el valor de la posicion de el jugador
      */
     public static int pedirPosInicial(){
         System.out.print("Ingresa la posición inicial: ");
@@ -208,8 +232,10 @@ public class Main {
     }
 
     
-    /** 
-     * @param mundo[]
+    /** generarMundo
+     * Genera el mundo pidiendo al usuario los atributos correspondientes.
+     * 
+     * @param mundo[] Objeto tierra donde son guardados los atributos dados por el usuario
      */
     public static void generarMundo(Tierra mundo[]){
         for(int i = 0; i < mundo.length; i++){
@@ -239,20 +265,23 @@ public class Main {
                 npc = new Bueno("", "", 0);
 
             if(tipo_tierra == 1)
-                mundo[i] = new Montana(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
+                mundo[i] = new Montana(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
             else if(tipo_tierra == 2)
-                mundo[i] = new Planicie(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
+                mundo[i] = new Planicie(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
             else   
-                mundo[i] = new Bosque(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
+                mundo[i] = new Bosque(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
             
             System.out.println();
         }
     }
 
     
-    /** 
-     * @param j
-     * @param mundo[]
+    /** menu
+     * Menu de el programa el cual pregunta como se movera el jugador
+     * Y notificara si se sigue el juego  no.
+     * 
+     * @param j Objeto jugdor el cual es el jugador creado por el usuario.
+     * @param mundo[] 
      */
     public static void menu(Jugador j,Tierra mundo[]){
         boolean flag = true;
@@ -271,7 +300,7 @@ public class Main {
             }while(opt != 1 && opt != 2);
 
             if(opt == 1)
-                j.setPos((j.getPos() - 1) % mundo.length);
+                j.setPos((j.getPos() - 1) % mundo.length  >= 0 ? (j.getPos() - 1) % mundo.length : mundo.length + (j.getPos() - 1) % mundo.length);
             else
                 j.setPos((j.getPos() + 1) % mundo.length);
             
@@ -304,7 +333,9 @@ public class Main {
     }
 
     
-    /** 
+    /** main
+     * Es donde se ejecuta el programa principal.
+     * 
      * @param args
      */
     public static void main(String[] args) {

@@ -5,17 +5,29 @@ import thelegendofmorio.enemigo.*;
 import thelegendofmorio.npc.*;
 
 public class Planicie extends Tierra{
-    public Planicie(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo,boolean existeNPC){
-        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo,existeNPC);
+    /**Planicie
+     * Es el constructor de la clase Planicie, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param probabilidad_enemigo flaot con al probabilidad de encontrar al enemigo
+     * @param monstruo Monstruo con la instancia de el monstruo a combatir
+     * @param jefe_final Jefe_Final con al instancia de el jefe a combatir
+     * @param npc Npc con la instancia de el npc a interatuar
+     * @param tipo_enemigo String con el tipo de enemgio
+     */
+    public Planicie(float probabilidad_enemigo,Monstruo monstruo,Jefe_Final jefe_final,NPC npc,String tipo_enemigo){
+        super(probabilidad_enemigo, monstruo, jefe_final, npc, tipo_enemigo);
     }
 
     
-    /** 
-     * @param j
-     * @return boolean
+    /** accion
+     * Ejecuta las acciones necesarias cuando se llega a una tierra
+     * 
+     * @param j Objeto Jugador
+     * @return boolean true si el jugador sobrevive y false si murio
      */
     public boolean accion(Jugador j){        
-        if(this.getExisteNPC())
+        if(this.existeNPC())
             this.getNpc().interaccion(j);
 
         if(this.getProbabilidadEnemigo() < Math.random())

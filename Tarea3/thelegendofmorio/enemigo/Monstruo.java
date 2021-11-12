@@ -7,9 +7,9 @@ import thelegendofmorio.utils.AuxScanner;
 public class Monstruo implements Enemigo{
     private int vida, dano;
 
-    /**
+    /**Monstruo
      * Es el constructor de la clase monstruo, la cual es llamada al ser intanciado
-    * el objeto.
+     * el objeto.
      * 
      * @param vida vida por defecto de el monstruo.
      * @param dano dano de el mosntruo.
@@ -20,7 +20,7 @@ public class Monstruo implements Enemigo{
     }
 
     
-    /** 
+    /** combate
      * Hace que el monstruo combata con un jugador entregado
      * como parametro en un duelo por turnos.
      * La funcion se acaba cuando el Jugador o el monstruo muere
@@ -58,7 +58,7 @@ public class Monstruo implements Enemigo{
 
 
     //setters
-    /** 
+    /** setVid
      * Le asigna un valor a la vida.
      * 
      * @param vida int con la vida.
@@ -67,7 +67,7 @@ public class Monstruo implements Enemigo{
         this.vida = vida;
     }
     
-    /** 
+    /** setDano
      * Le asigna un valor al dano.
      * 
      * @param dano int con el dano.
@@ -77,7 +77,7 @@ public class Monstruo implements Enemigo{
     }
 
     //getters
-    /** 
+    /** getVida
      * Devuelve el valor de la vida;
      * 
      * @return int vida.
@@ -86,7 +86,7 @@ public class Monstruo implements Enemigo{
         return this.vida;
     }
     
-    /** 
+    /** getDano
      * Devielve el valor de el dano.
      * 
      * @return int dano.

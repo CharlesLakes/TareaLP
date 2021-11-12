@@ -1,12 +1,18 @@
 package thelegendofmorio.jugador;
 
 public class Mago extends Jugador{
+    /**Mago
+     * Es el constructor de la clase Mago, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param nombre String con el nombre de el mago
+     */
     public Mago(String nombre){
         super(nombre,10,0,3,10,6,15);
     }
 
     
-    /** 
+    /** ataque
      * Devuelve el ataque que ejerce el mago
      * La que depende de la energia, fuerza e inteligencia.
      * 
@@ -20,7 +26,7 @@ public class Mago extends Jugador{
     }
 
     
-    /** 
+    /** hechizo
      * Devuelve el ataque que ejerce el mago
      * La que depende de la mana, fuerza e inteligencia.
      * 
@@ -34,7 +40,7 @@ public class Mago extends Jugador{
     }
 
     
-    /** 
+    /** subir_experiencia
      * Sube la experiencia de el jugador y si sube de nivel
      * sube los atributos correspondientes
      * 

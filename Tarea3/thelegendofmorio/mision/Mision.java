@@ -4,6 +4,15 @@ public class Mision {
     private char requisito;
     private int valor, cantidad, recompensa;
 
+    /**Mision
+     * Es el constructor de la clase Mision, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param requisito char con el requisito de la mision
+     * @param valor int con el valor que tiene que conseguir el jugador
+     * @param cantidad int al cantidad que lleva
+     * @param recompensa int la recompensa por la mision
+     */
     public Mision(char requisito, int valor, int cantidad, int recompensa){
         this.requisito = requisito;
         this.valor = valor;
@@ -12,7 +21,7 @@ public class Mision {
     }
 
     
-    /** 
+    /** verificar_requisito
      * Verifica si el requisito de la mision se cumplio.
      * 
      * @return boolean true si el requsito se cumple y false si no se cumple.
@@ -22,7 +31,7 @@ public class Mision {
     }
 
     //setters
-    /** 
+    /** setRequisito
      * Le asigna un valor a requisito.
      * 
      * @param requisito char con el requisito.
@@ -31,7 +40,7 @@ public class Mision {
         this.requisito = requisito;
     }
     
-    /** 
+    /** setValor
      * Le asigna un valor a valor.
      * 
      * @param valor int con el valor.
@@ -40,7 +49,7 @@ public class Mision {
         this.valor = valor;
     }
     
-    /** 
+    /** setCantidad
      * Le asigna un valor a cantidad.
      * 
      * @param cantidad int con la cantidad.
@@ -49,7 +58,7 @@ public class Mision {
         this.cantidad = cantidad;
     }
     
-    /** 
+    /** setRecompensa
      * Le asigna un valor a recompensa.
      * 
      * @param recompensa int con la recompensa.
@@ -59,7 +68,7 @@ public class Mision {
     }
 
     //getters
-    /** 
+    /** getRequisito
      * Devielve el valor de el requisito.
      * 
      * @return char requisito.
@@ -68,7 +77,7 @@ public class Mision {
         return this.requisito;
     }
     
-    /** 
+    /** getValor
      * Devielve el valor de el valor.
      * 
      * @return int valor.
@@ -77,7 +86,7 @@ public class Mision {
         return this.valor;
     }
     
-    /** 
+    /** getCantidad
      * Devielve el valor de la cantidad.
      * 
      * @return int cantidad.
@@ -86,7 +95,7 @@ public class Mision {
         return this.cantidad;
     }
     
-    /** 
+    /** getRecompen
      * Devielve el valor de la recompensa.
      * 
      * @return int recompensa.

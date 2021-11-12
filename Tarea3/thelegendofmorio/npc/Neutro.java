@@ -9,6 +9,15 @@ public class Neutro extends NPC{
     private char requisito;
     private int valor, recompensa, ya_dio_mision;
 
+    /**Neutro
+     * Es el constructor de la clase Neutro, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param nombre String con el nombre de el Neutro
+     * @param requisito char con el requisito de la mision que asigna
+     * @param valor int con el valor de la mision que asigna
+     * @param recompensa int con la recompnesa en xp de la mision que asigna
+     */
     public Neutro(String nombre, char requisito, int valor, int recompensa){
         super(nombre);
         this.requisito = requisito;
@@ -18,7 +27,7 @@ public class Neutro extends NPC{
     }
 
     
-    /** 
+    /** interaccion
      * Hace que el NPC bueno le mejore un atrubuto al jugador 
      * al interaccionar con el.
      * 
@@ -45,7 +54,7 @@ public class Neutro extends NPC{
 
 
     //setters
-    /** 
+    /** setRequisito
      * Le asigna un valor a requisito.
      * 
      * @param requisito char con el requisito.
@@ -54,7 +63,7 @@ public class Neutro extends NPC{
         this.requisito = requisito;
     }
     
-    /** 
+    /** setValor
      * Le asigna un valor a valor.
      * 
      * @param valor int con el valor.
@@ -63,7 +72,7 @@ public class Neutro extends NPC{
         this.valor = valor;
     }
     
-    /** 
+    /** setRecompensa
      * Le asigna un valor a recompensa.
      * 
      * @param recompensa int con la recompensa.
@@ -72,7 +81,7 @@ public class Neutro extends NPC{
         this.recompensa = recompensa;
     }
     
-    /** 
+    /** setYaDioMisio
      * Le asigna un valor a ya_dio_mision.
      * 
      * @param ya_dio_mision int con el ya_dio_mision.
@@ -82,7 +91,7 @@ public class Neutro extends NPC{
     }
 
     
-    /** 
+    /** getRequisito
      * Devielve el valor de la requisito.
      * 
      * @return char requisito.
@@ -92,7 +101,7 @@ public class Neutro extends NPC{
         return this.requisito;
     }
     
-    /** 
+    /** getValor(
      * Devielve el valor de el valor.
      * 
      * @return int valor.
@@ -101,7 +110,7 @@ public class Neutro extends NPC{
         return this.valor;
     }
     
-    /** 
+    /** getRecompensa
      * Devielve el valor de la recompensa.
      * 
      * @return int recompensa.
@@ -110,7 +119,7 @@ public class Neutro extends NPC{
         return this.recompensa;
     }
     
-    /** 
+    /** getYaDioMision
      * Devielve el valor de el ya_dio_mision.
      * 
      * @return int ya_dio_mision.

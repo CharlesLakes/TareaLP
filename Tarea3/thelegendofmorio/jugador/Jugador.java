@@ -10,6 +10,18 @@ public abstract class Jugador {
     private int vida_maxima, energia_maxima, mana_maxima, pos;
     private ArrayList<Mision> lista_misiones;
 
+    /**Jugador
+     * Es el constructor de la clase Jugador, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param nombre String que contiene el nombre de el jugador
+     * @param vida int que contine la vida de el jugador
+     * @param xp int que contiene el xp de el jugaor
+     * @param fuerza int que contiene la fuerza de el jugador
+     * @param inteligencia int que contiene la inteligencia de el jugador
+     * @param energia int que contiene la energia de el jugador
+     * @param mana int que contiene el mana de el jugador
+     */
     public Jugador(String nombre,int vida,int xp,int fuerza,int inteligencia,int energia,int mana){
         this.nombre = nombre;
         this.vida = vida;
@@ -26,7 +38,7 @@ public abstract class Jugador {
     
 
     
-    /** 
+    /** ataque
      * Devuelve el ataque que ejerce el jugador
      * 
      * @return int ataque que ejerce el jugador.
@@ -36,7 +48,7 @@ public abstract class Jugador {
     
 
     
-    /** 
+    /** hechizo
      * Devuelve el ataque que ejerce el hechizo
      * 
      * @return int ataque que ejerce el hechizo.
@@ -46,7 +58,7 @@ public abstract class Jugador {
     
 
     
-    /** 
+    /** subir_experiencia
      * Sube la experiencia de el jugador y si sube de nivel
      * sube los atributos correspondientes
      * 
@@ -57,7 +69,7 @@ public abstract class Jugador {
     
 
     // setters
-    /** 
+    /** setNombre
      * Le asigna un valor a nombre.
      * 
      * @param nombre String con el nombre.
@@ -66,7 +78,7 @@ public abstract class Jugador {
         this.nombre = nombre;
     }
     
-    /** 
+    /** setVida
      * Le asigna un valor a vida.
      * 
      * @param vida int con la vida.
@@ -75,7 +87,7 @@ public abstract class Jugador {
         this.vida = vida;
     }
     
-    /** 
+    /** setXp
      * Le asigna un valor a xp.
      * 
      * @param xp int con el xp.
@@ -84,7 +96,7 @@ public abstract class Jugador {
         this.xp = xp;
     }
     
-    /** 
+    /** setFuerza
      * Le asigna un valor a fuerza.
      * 
      * @param fuerza int con la fuerza.
@@ -93,7 +105,7 @@ public abstract class Jugador {
         this.fuerza = fuerza;
     }
     
-    /** 
+    /** setInteligencia
      * Le asigna un valor a inteligencia.
      * 
      * @param inteligencia int con la inteligencia.
@@ -102,7 +114,7 @@ public abstract class Jugador {
         this.inteligencia = inteligencia;
     }
     
-    /** 
+    /** setEnergia
      * Le asigna un valor a energia.
      * 
      * @param energia int con la energia.
@@ -111,7 +123,7 @@ public abstract class Jugador {
         this.energia = energia;
     }
     
-    /** 
+    /** setMana
      * Le asigna un valor a mana.
      * 
      * @param mana int con el mana.
@@ -120,7 +132,7 @@ public abstract class Jugador {
         this.mana = mana;
     }
     
-    /** 
+    /** setVidaMaxima
      * Le asigna un valor a vida_maxima.
      * 
      * @param vida_maxima int con la vida_maxima.
@@ -129,7 +141,7 @@ public abstract class Jugador {
         this.vida_maxima = vida_maxima;
     }
     
-    /** 
+    /** setEnergiaMaxima
      * Le asigna un valor a energia_maxima.
      * 
      * @param energia_maxima int con la energia_maxima.
@@ -138,7 +150,7 @@ public abstract class Jugador {
         this.energia_maxima = energia_maxima;
     }
     
-    /** 
+    /** setManaMaxima
      * Le asigna un valor a mana_maxima.
      * 
      * @param mana_maxima int con la mana_maxima.
@@ -147,7 +159,7 @@ public abstract class Jugador {
         this.mana_maxima = mana_maxima;
     }
     
-    /** 
+    /** setListaMisiones
      * Le asigna un valor a lista_misiones.
      * 
      * @param lista_misiones ArrayList<Mision> con la lista_misiones.
@@ -156,7 +168,7 @@ public abstract class Jugador {
         this.lista_misiones = lista_misiones;
     }
     
-    /** 
+    /** setPos
      * Le asigna un valor a pos.
      * 
      * @param pos int con la pos.

@@ -2,13 +2,19 @@ package thelegendofmorio.jugador;
 
 
 public class Druida extends Jugador{
+    /**Druida
+     * Es el constructor de la clase Druida, la cual es llamada al ser intanciado
+    * el objeto.
+     * 
+     * @param nombre Es un string que contiene el nombre de la druida
+     */
     public Druida(String nombre){
         super(nombre,15,0,5,5,5,5);
     }
 
     
     
-    /** 
+    /** ataque
      * Devuelve el ataque que ejerce la Druida
      * La que depende de la fuerza, inteligencia, energia y mana.
      * 
@@ -22,7 +28,7 @@ public class Druida extends Jugador{
     }
 
     
-    /** 
+    /** hechizo
      * Devuelve el hechizo que ejerce la Druida
      * Lo que depende de el mana, fuerza, inteligencia y energia.
      * 
@@ -36,7 +42,7 @@ public class Druida extends Jugador{
     }
 
     
-    /** 
+    /** subir_experiencia
      * Sube la experiencia de el jugador y si sube de nivel
      * sube los atributos correspondientes
      * 

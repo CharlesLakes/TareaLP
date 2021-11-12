@@ -6,6 +6,14 @@ public class Malo extends NPC{
     private int cantidad_energia;
     private int cantidad_mana;
 
+    /** Malo
+     * Es el constructor de la clase Malo, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param nombre String con el nombre de el Malo
+     * @param cantidad_energia int con la cantidad_energia
+     * @param cantidad_mana int con la cantidad_mana
+     */
     public Malo(String nombre, int cantidad_energia, int cantidad_mana){
         super(nombre);
         this.cantidad_energia = cantidad_energia;
@@ -13,7 +21,7 @@ public class Malo extends NPC{
     }
 
     
-    /** 
+    /** interaccion
      * Hace que el NPC bueno le mejore un atrubuto al jugador 
      * al interaccionar con el.
      * 
@@ -40,7 +48,7 @@ public class Malo extends NPC{
     }
 
     //setters
-    /** 
+    /** setCantidadEnergia
      * Le asigna un valor a cantidad_energia.
      * 
      * @param cantidad_energia int con la cantidad_energia.
@@ -49,7 +57,7 @@ public class Malo extends NPC{
         this.cantidad_energia = cantidad_energia;
     }
     
-    /** 
+    /** setCantidadMana(
      * Le asigna un valor a cantidad_mana.
      * 
      * @param cantidad_mana int con la cantidad_mana.
@@ -59,7 +67,7 @@ public class Malo extends NPC{
     }
 
     //getters
-    /** 
+    /** getCantidadEnergia
      * Devielve el valor de la cantidad_energia.
      * 
      * @return int cantidad_energia.
@@ -68,7 +76,7 @@ public class Malo extends NPC{
         return this.cantidad_energia;
     }
     
-    /** 
+    /** getCantidadMana
      * Devielve el valor de la cantidad_mana.
      * 
      * @return int cantidad_mana.

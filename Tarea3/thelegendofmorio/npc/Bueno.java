@@ -5,6 +5,14 @@ public class Bueno extends NPC{
     private String atributo;
     private int cantidad;
 
+    /**Bueno
+     * Es el constructor de la clase Bueno, la cual es llamada al ser intanciado
+     * el objeto.
+     * 
+     * @param nombre String con el nombre de el npc.
+     * @param atributo String con el atributo que mejora.
+     * @param cantidad int con la cantidad que mejora de el atributo.
+     */
     public Bueno(String nombre, String atributo, int cantidad){
         super(nombre);
         this.atributo = atributo;
@@ -12,7 +20,7 @@ public class Bueno extends NPC{
     }
 
     
-    /** 
+    /** interaccion
      * Hace que el NPC bueno le mejore un atrubuto al jugador 
      * al interaccionar con el.
      * 
@@ -40,7 +48,7 @@ public class Bueno extends NPC{
     }
 
     //setters
-    /** 
+    /** setAtributo
      * Le asigna un valor a atributo.
      * 
      * @param atributo String con al atributo.
@@ -49,7 +57,7 @@ public class Bueno extends NPC{
         this.atributo = atributo;
     }
     
-    /** 
+    /** setCantidad
      * Le asigna un valor a cantidad.
      * 
      * @param cantidad int con la cantidad.
@@ -59,7 +67,7 @@ public class Bueno extends NPC{
     }
 
     //getters
-    /** 
+    /** getAtributo
      * Devielve el valor de el atributo.
      * 
      * @return int atributo.
@@ -68,7 +76,7 @@ public class Bueno extends NPC{
         return this.atributo;
     }
     
-    /** 
+    /** getCantidad
      * Devielve el valor de la cantidad.
      * 
      * @return int cantidad.

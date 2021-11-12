@@ -9,6 +9,7 @@ public class Jefe_Final implements Enemigo {
     private int vida, dano_base, vida_inicial;
 
     /**
+    * Jefe_Final 
     * Es el constructor de la clase jefe final, la cual es llamada al ser intanciado
     * el objeto.
     *
@@ -25,6 +26,7 @@ public class Jefe_Final implements Enemigo {
 
     
     /** 
+     * combate
      * Hace que el jefe final combata con un jugador entregado
      * como parametro en un duelo por turnos.
      * La funcion se acaba cuando el Jugador o el jefe final muere
@@ -63,17 +65,19 @@ public class Jefe_Final implements Enemigo {
         }
     }
 
-    //setters
+    
     /** 
+     * combate
      * Le asigna un valor a nombre.
      * 
      * @param nombre String con el nombre.
      */
-    public void setNombre(String nombre){
+    public void combate(String nombre){
         this.nombre = nombre;
     }
-    
-    /** 
+
+    //setters
+    /** setVida
      * Le asigna un valor a la vida.
      * 
      * @param vida int con la vida.
@@ -82,7 +86,7 @@ public class Jefe_Final implements Enemigo {
         this.vida = vida;
     }
     
-    /** 
+    /** setDanoBase
      * Le asigna un valor al dano_base.
      * 
      * @param dano_base int con el dano base.
@@ -91,7 +95,7 @@ public class Jefe_Final implements Enemigo {
         this.dano_base = dano_base;
     }
     
-    /** 
+    /** setVidaInicial
      * Le asigna un valor a la vida_inicial.
      * 
      * @param vida_inicial int con la vida inicial.
@@ -101,7 +105,7 @@ public class Jefe_Final implements Enemigo {
     }
 
     //getters
-    /** 
+    /** getNombr
      * Devuelve el valor de el nombre.
      * 
      * @return String nombre.
@@ -110,7 +114,7 @@ public class Jefe_Final implements Enemigo {
         return this.nombre;
     }
     
-    /** 
+    /** getVida
      * Devuelve el valor de la vida.
      * 
      * @return int vida.
@@ -119,7 +123,7 @@ public class Jefe_Final implements Enemigo {
         return this.vida;
     }
     
-    /** 
+    /** getDanoBase
      * Devuelve el valor de el dano base.
      * 
      * @return int dano_base.
@@ -128,7 +132,7 @@ public class Jefe_Final implements Enemigo {
         return this.dano_base;
     }
     
-    /** 
+    /** getVidaInicial
      * Devuelve el valor de la vida inicial.
      * 
      * @return int vida_inicial.
