@@ -3,11 +3,11 @@ package thelegendofmorio.enemigo;
 import thelegendofmorio.jugador.*;
 import java.util.Scanner;
 
-public abstract class JefeFinal {
+public abstract class Jefe_Final {
     private String nombre;
     private int vida, dano_base, vida_inicial;
 
-    public JefeFinal(String nombre, int vida, int dano_base){
+    public Jefe_Final(String nombre, int vida, int dano_base){
         this.nombre = nombre;
         this.vida = vida;
         this.vida_inicial = vida;
