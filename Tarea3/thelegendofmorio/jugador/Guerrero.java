@@ -2,12 +2,18 @@ package thelegendofmorio.jugador;
 
 
 public class Guerrero extends Jugador{
+    /**Guerrero
+     * Es el constructor de la clase Guerrero, la cual es llamada al ser intanciado
+    * el objeto.
+     * 
+     * @param nombre Es un string que contiene el nombre de el guerrero
+     */
     public Guerrero(String nombre){
         super(nombre,20,0,9,1,10,2);
     }
 
     
-    /** 
+    /** ataque
      * Devuelve el ataque que ejerce el guerrero
      * La que depende de la fuerza y energia.
      * 
@@ -21,7 +27,7 @@ public class Guerrero extends Jugador{
     }
 
     
-    /** 
+    /** hechizo
      * Devuelve el hechizo que ejerce el guerrero
      * La que depende de la manda, inteligencia, fuerza y mana.
      * 
@@ -35,7 +41,7 @@ public class Guerrero extends Jugador{
     }
 
     
-    /** 
+    /** subir_experiencia
      * Sube la experiencia de el jugador y si sube de nivel
      * sube los atributos correspondientes
      * 
