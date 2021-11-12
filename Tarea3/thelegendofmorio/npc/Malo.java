@@ -13,15 +13,23 @@ public class Malo extends NPC{
     }
 
     public void interaccion(Jugador j){
-        if(j.getEnergia() - this.getCantidadEnergia() < 0)
-            j.setEnergia(0);
-        else
-            j.setEnergia(j.getEnergia() - this.getCantidadEnergia());
-        
-        if(j.getMana() - this.getCantidadMana() < 0)
-            j.setMana(0);
-        else
-            j.setMana(j.getMana() - this.getCantidadMana());
+        System.out.println(this.getNombre() + ": SOY MALO TE VOY A DISMINUIR TU ENERGIA y MANA EN" + this.getCantidadEnergia() + " y " + this.getCantidadMana());
+
+        int azar = (int) (1 + Math.random()*10);
+        if(azar <= 6){
+            if(j.getEnergia() - this.getCantidadEnergia() < 0)
+                j.setEnergia(0);
+            else
+                j.setEnergia(j.getEnergia() - this.getCantidadEnergia());
+        }
+
+        azar = (int) (1 + Math.random()*10);
+        if(azar <= 6){
+            if(j.getMana() - this.getCantidadMana() < 0)
+                j.setMana(0);
+            else
+                j.setMana(j.getMana() - this.getCantidadMana());
+        }
     }
 
     //setters
