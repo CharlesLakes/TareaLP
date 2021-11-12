@@ -8,7 +8,7 @@ import java.util.Scanner;
 public abstract class Jugador {
     private String nombre;
     private int vida, xp, fuerza , inteligencia, energia, mana;
-    private int vida_maxima, energia_maxima, mana_maxima;
+    private int vida_maxima, energia_maxima, mana_maxima, pos;
     private ArrayList<Mision> lista_misiones;
 
     public Jugador(int vida,int xp,int fuerza,int inteligencia,int energia,int mana,ArrayList<Mision> lista_misiones){
@@ -67,6 +67,9 @@ public abstract class Jugador {
     public void setListaMisiones(ArrayList<Mision> lista_misiones){
         this.lista_misiones = lista_misiones;
     }
+    public void setPos(int pos){
+        this.pos = pos;
+    }
 
     // getters
     public String getNombre(){
@@ -98,6 +101,9 @@ public abstract class Jugador {
     }
     public int getManaMaxima(){
         return this.mana_maxima;
+    }
+    public int getPos(){
+        return this.pos;
     }
     public ArrayList<Mision> getListaMisiones(){
         return this.lista_misiones;

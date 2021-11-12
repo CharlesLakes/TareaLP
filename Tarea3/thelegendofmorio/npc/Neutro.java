@@ -28,7 +28,7 @@ public class Neutro extends NPC{
         
         System.out.print("Respuesta (si o no): ");
         if(input.next().equals("si")){
-            j.getListaMisiones().add(new Mision(this.getRequisito(), this.getValor(), this.getRecompensa()));
+            j.getListaMisiones().add(new Mision(this.getRequisito(), (this.getRequisito() == 'v' ? j.getPos() : 0) ,this.getValor(), this.getRecompensa()));
         }
         input.close();
     }

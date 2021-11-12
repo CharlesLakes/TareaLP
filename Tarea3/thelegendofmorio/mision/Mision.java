@@ -4,10 +4,10 @@ public class Mision {
     private char requisito;
     private int valor, cantidad, recompensa;
 
-    public Mision(char requisito, int valor, int recompensa){
+    public Mision(char requisito, int valor, int cantidad, int recompensa){
         this.requisito = requisito;
         this.valor = valor;
-        this.cantidad = 0;
+        this.cantidad = cantidad;
         this.recompensa = recompensa;
     }
 
