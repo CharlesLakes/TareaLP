@@ -25,6 +25,9 @@ public class Montana extends Tierra{
         
         this.getNpc().interaccion(j);
 
+        if(this.getProbabilidadEnemigo() < Math.random())
+            return true;
+
         if(this.getTipoEnemigo().equals("Monstruo"))
             this.getMonstruo().combate(j);
         else if(this.getTipoEnemigo().equals("Jefe_Final"))

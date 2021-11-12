@@ -12,6 +12,10 @@ public class Planicie extends Tierra{
     public boolean accion(Jugador j){        
         this.getNpc().interaccion(j);
 
+        if(this.getProbabilidadEnemigo() < Math.random())
+            return true;
+
+
         if(this.getTipoEnemigo().equals("Monstruo"))
             this.getMonstruo().combate(j);
         else if(this.getTipoEnemigo().equals("Jefe_Final"))
