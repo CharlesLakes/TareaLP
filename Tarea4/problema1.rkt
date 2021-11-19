@@ -1,5 +1,9 @@
 #lang scheme
 
+
+;;(mazo cartas divisor)
+;;Esta funcion obtiene una lista de las cartas multipos de el divisor
+;;Problema 1
 (define mazo
 	(lambda (cartas divisor)
 		(let mazo-loop ((lista cartas) (new_lista '()))
