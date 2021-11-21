@@ -3,6 +3,8 @@
 
 ;;(mazo cartas divisor)
 ;;Esta funcion obtiene una lista de las cartas multipos de el divisor
+;;Retorna los numeros multiplos de el divisor
+
 ;;Problema 1
 (define mazo
 	(lambda (cartas divisor)

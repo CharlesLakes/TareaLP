@@ -11,6 +11,8 @@
 
 ;;(zeta_simple i s)
 ;;Calcula la zeta simple
+;;Retorna la sumatoria desde el inicio
+
 ;;Problema 3
 (define zeta_simple
 	(lambda (i s) 
@@ -24,6 +26,8 @@
 
 ;;(zeta_cola i s)
 ;;Calcula la zeta cola
+;;Retorna la sumatoria desde la cola
+
 ;;Problema 3
 (define zeta_cola
         (lambda (i s)

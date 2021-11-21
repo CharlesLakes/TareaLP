@@ -1,5 +1,10 @@
 #lang scheme
 
+;;(vida h arbol)
+;;Esta funcion encuentra los padres de un nodo
+;;Retorna los nodos padres a h
+
+;;Problema 4
 (define vida 
 	(lambda (h arbol)
 		(let loop-arbol ((nodo (car arbol)) (arbol-izquierdo (cadr arbol)) (arbol-derecho (caddr arbol)) (lista-nodos '()))

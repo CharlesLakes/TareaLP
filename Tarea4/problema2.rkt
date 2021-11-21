@@ -2,8 +2,9 @@
 
 ;;(transformacion funcion1 funcion2 numeros)
 ;;La funcion ejecuta en cada numero de numero la funcion1 y la funcion2 quedando r1,  para obtener r2 es ejecutando la funcion2 y luego la funcion1. En la lista resultante se queda el mayor
-;;Problema 2
+;;Retonra los resutlados segun cada numero de la lista
 
+;;Problema 2
 (define transformacion
 	(lambda (funcion1 funcion2 numeros)
 		(let loop-trans ((lista_inicial numeros) (lista_final '()))
