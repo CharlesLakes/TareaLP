@@ -16,15 +16,15 @@
 
 ;;Problema 3
 (define zeta_cola
-        (lambda (i s)
-                (let loop-zeta-cola ((n i) (r 0))
-                        (if (= n 0)
-                                r
-                                (loop-zeta-cola (- n 1) (+ r (/ 1 (expt n s))))
-
-                        )
-                )
-))
+	(lambda (i s)
+		(let loop-zeta-cola ((n i) (r 0))
+			(if (= n 0)
+ 				r
+				(loop-zeta-cola (- n 1) (+ r (/ 1 (expt n s))))
+			)
+		)
+	)
+)
 
 (zeta_simple 3 2)
 (zeta_cola 3 2)

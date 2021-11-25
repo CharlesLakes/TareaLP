@@ -9,27 +9,26 @@
 			(if (= n (car lista))
 				1
 				(in-list n (cdr lista))
-			 )
-		 )
-	    )
-  )
+			)
+		)
+	)
+)
 
 ;;(unit lista-uno lista-dos)
 ;;Une dos listas sin repetir numeros
 ;;Devuelve la lista sin repeticiones
 (define unir (lambda (lista-uno lista-dos)
-			(let loop-unir ((lista lista-dos) (lista-resultante lista-uno))
-				(if (null? lista)
-					lista-resultante
-					(if (= (in-list (car lista) lista-resultante) 1)
-					    	(loop-unir (cdr lista) lista-resultante)
-						(loop-unir (cdr lista) (append lista-resultante (list (car lista))))
-					 )
-				 )
-		 	)
-	      )
-
- )
+		(let loop-unir ((lista lista-dos) (lista-resultante lista-uno))
+			(if (null? lista)
+				lista-resultante
+				(if (= (in-list (car lista) lista-resultante) 1)
+					(loop-unir (cdr lista) lista-resultante)
+					(loop-unir (cdr lista) (append lista-resultante (list (car lista))))
+				)
+			)
+		)
+	)
+)
 
 ;;(buscar-nodo grafo n)
 ;;Busca el nodo n con sus vecinos respectivos
@@ -47,12 +46,11 @@
 					(if (null? contagiados)
 						(loop-contagio (+ dias 1) (unir temp-contagiados vecinos) '() '())
 						(loop-contagio dias (cdr contagiados) (append temp-contagiados (list (car contagiados))) (unir vecinos (cadr (buscar-nodo grafo (car contagiados)))))
-					 )
-				 )
-			 )
-		  )
-
- )
+					)
+				)
+			)
+	)
+)
 
 (contagio '((2 (1 3 4)) (1 (2)) (3 (2)) (4 (2))) 2 1)
 
